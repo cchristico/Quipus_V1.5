@@ -309,7 +309,7 @@ public class Dashboards extends javax.swing.JPanel {
         defaultcategorydataset.addValue(309D, "S1", "Mozilla Public Licence");
         defaultcategorydataset.addValue(918D, "S1", "Other");
 
-        //arma la data
+        //creas el objeto freechart
         //TITULO
         //EJE Y
         //EJE X
