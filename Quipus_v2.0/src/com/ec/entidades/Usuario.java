@@ -31,7 +31,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Usuario.findByContrasenaUsuario", query = "SELECT u FROM Usuario u WHERE u.contrasenaUsuario = :contrasenaUsuario"),
     @NamedQuery(name = "Usuario.findByCedulaUsuario", query = "SELECT u FROM Usuario u WHERE u.cedulaUsuario = :cedulaUsuario")})
 public class Usuario implements Serializable {
 
@@ -45,12 +44,10 @@ public class Usuario implements Serializable {
     @Column(name = "NOMBRE_USUARIO")
     private String nombreUsuario;
     @Basic(optional = false)
-    @Column(name = "CONTRASENA_USUARIO")
-    private String contrasenaUsuario;
     @Column(name = "CEDULA_USUARIO")
     private String cedulaUsuario;
     @OneToMany(mappedBy = "idUsuario")
-    private Collection<Detalle> detalleCollection;
+    private Collection<Factura> facturaCollection;
 
     public Usuario() {
     }
@@ -59,10 +56,10 @@ public class Usuario implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuario(Integer idUsuario, String nombreUsuario, String contrasenaUsuario) {
+    public Usuario(Integer idUsuario, String nombreUsuario, String cedulaUsuario) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
-        this.contrasenaUsuario = contrasenaUsuario;
+        this.cedulaUsuario = cedulaUsuario;
     }
 
     public Integer getIdUsuario() {
@@ -81,14 +78,6 @@ public class Usuario implements Serializable {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getContrasenaUsuario() {
-        return contrasenaUsuario;
-    }
-
-    public void setContrasenaUsuario(String contrasenaUsuario) {
-        this.contrasenaUsuario = contrasenaUsuario;
-    }
-
     public String getCedulaUsuario() {
         return cedulaUsuario;
     }
@@ -98,12 +87,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Detalle> getDetalleCollection() {
-        return detalleCollection;
+    public Collection<Factura> getFacturaCollection() {
+        return facturaCollection;
     }
 
-    public void setDetalleCollection(Collection<Detalle> detalleCollection) {
-        this.detalleCollection = detalleCollection;
+    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+        this.facturaCollection = facturaCollection;
     }
 
     @Override

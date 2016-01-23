@@ -14,11 +14,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -33,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Rubro.findAll", query = "SELECT r FROM Rubro r"),
     @NamedQuery(name = "Rubro.findByIdRubro", query = "SELECT r FROM Rubro r WHERE r.idRubro = :idRubro"),
-    @NamedQuery(name = "Rubro.findByValorActual", query = "SELECT r FROM Rubro r WHERE r.valorActual = :valorActual")})
+    @NamedQuery(name = "Rubro.findByNombreRubro", query = "SELECT r FROM Rubro r WHERE r.nombreRubro = :nombreRubro"),
+    @NamedQuery(name = "Rubro.findByValorMaximo", query = "SELECT r FROM Rubro r WHERE r.valorMaximo = :valorMaximo")})
 public class Rubro implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,23 +41,27 @@ public class Rubro implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_RUBRO")
     private Integer idRubro;
+    @Basic(optional = false)
+    @Column(name = "NOMBRE_RUBRO")
+    private String nombreRubro;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "VALOR_ACTUAL")
-    private BigDecimal valorActual;
-    @ManyToMany(mappedBy = "rubroCollection")
-    private Collection<Factura> facturaCollection;
-    @JoinColumn(name = "ID_DETALLE_RUBRO", referencedColumnName = "ID_DETALLE_RUBRO")
-    @ManyToOne
-    private DetalleRubro idDetalleRubro;
-    @JoinColumn(name = "ID_RUBRO_FACRURA", referencedColumnName = "ID_RUBRO_FACRURA")
-    @ManyToOne
-    private RubroFacruea idRubroFacrura;
+    @Basic(optional = false)
+    @Column(name = "VALOR_MAXIMO")
+    private BigDecimal valorMaximo;
+    @OneToMany(mappedBy = "idRubro")
+    private Collection<FacturaRubro> facturaRubroCollection;
 
     public Rubro() {
     }
 
     public Rubro(Integer idRubro) {
         this.idRubro = idRubro;
+    }
+
+    public Rubro(Integer idRubro, String nombreRubro, BigDecimal valorMaximo) {
+        this.idRubro = idRubro;
+        this.nombreRubro = nombreRubro;
+        this.valorMaximo = valorMaximo;
     }
 
     public Integer getIdRubro() {
@@ -69,37 +72,29 @@ public class Rubro implements Serializable {
         this.idRubro = idRubro;
     }
 
-    public BigDecimal getValorActual() {
-        return valorActual;
+    public String getNombreRubro() {
+        return nombreRubro;
     }
 
-    public void setValorActual(BigDecimal valorActual) {
-        this.valorActual = valorActual;
+    public void setNombreRubro(String nombreRubro) {
+        this.nombreRubro = nombreRubro;
+    }
+
+    public BigDecimal getValorMaximo() {
+        return valorMaximo;
+    }
+
+    public void setValorMaximo(BigDecimal valorMaximo) {
+        this.valorMaximo = valorMaximo;
     }
 
     @XmlTransient
-    public Collection<Factura> getFacturaCollection() {
-        return facturaCollection;
+    public Collection<FacturaRubro> getFacturaRubroCollection() {
+        return facturaRubroCollection;
     }
 
-    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-        this.facturaCollection = facturaCollection;
-    }
-
-    public DetalleRubro getIdDetalleRubro() {
-        return idDetalleRubro;
-    }
-
-    public void setIdDetalleRubro(DetalleRubro idDetalleRubro) {
-        this.idDetalleRubro = idDetalleRubro;
-    }
-
-    public RubroFacruea getIdRubroFacrura() {
-        return idRubroFacrura;
-    }
-
-    public void setIdRubroFacrura(RubroFacruea idRubroFacrura) {
-        this.idRubroFacrura = idRubroFacrura;
+    public void setFacturaRubroCollection(Collection<FacturaRubro> facturaRubroCollection) {
+        this.facturaRubroCollection = facturaRubroCollection;
     }
 
     @Override

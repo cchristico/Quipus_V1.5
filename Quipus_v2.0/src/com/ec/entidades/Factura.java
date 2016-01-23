@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -36,100 +34,86 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
-    @NamedQuery(name = "Factura.findByIdFactu", query = "SELECT f FROM Factura f WHERE f.idFactu = :idFactu"),
-    @NamedQuery(name = "Factura.findByFecha", query = "SELECT f FROM Factura f WHERE f.fecha = :fecha")})
+    @NamedQuery(name = "Factura.findByIdFactura", query = "SELECT f FROM Factura f WHERE f.idFactura = :idFactura"),
+    @NamedQuery(name = "Factura.findByFechafactura", query = "SELECT f FROM Factura f WHERE f.fechafactura = :fechafactura")})
 public class Factura implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_FACTU")
-    private Integer idFactu;
+    @Column(name = "ID_FACTURA")
+    private Integer idFactura;
     @Basic(optional = false)
-    @Column(name = "FECHA")
+    @Column(name = "FECHAFACTURA")
     @Temporal(TemporalType.DATE)
-    private Date fecha;
-    @JoinTable(name = "rubo_factura", joinColumns = {
-        @JoinColumn(name = "ID_FACTU", referencedColumnName = "ID_FACTU")}, inverseJoinColumns = {
-        @JoinColumn(name = "ID_RUBRO", referencedColumnName = "ID_RUBRO")})
-    @ManyToMany
-    private Collection<Rubro> rubroCollection;
-    @JoinColumn(name = "ID_RUBRO_FACRURA", referencedColumnName = "ID_RUBRO_FACRURA")
+    private Date fechafactura;
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private RubroFacruea idRubroFacrura;
-    @OneToMany(mappedBy = "idFactu")
-    private Collection<Proveedor> proveedorCollection;
-    @OneToMany(mappedBy = "idFactu")
-    private Collection<Detalle> detalleCollection;
+    private Usuario idUsuario;
+    @OneToMany(mappedBy = "idFactura")
+    private Collection<FacturaRubro> facturaRubroCollection;
+    @OneToMany(mappedBy = "idFactura")
+    private Collection<ProveedorFactura> proveedorFacturaCollection;
 
     public Factura() {
     }
 
-    public Factura(Integer idFactu) {
-        this.idFactu = idFactu;
+    public Factura(Integer idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public Factura(Integer idFactu, Date fecha) {
-        this.idFactu = idFactu;
-        this.fecha = fecha;
+    public Factura(Integer idFactura, Date fechafactura) {
+        this.idFactura = idFactura;
+        this.fechafactura = fechafactura;
     }
 
-    public Integer getIdFactu() {
-        return idFactu;
+    public Integer getIdFactura() {
+        return idFactura;
     }
 
-    public void setIdFactu(Integer idFactu) {
-        this.idFactu = idFactu;
+    public void setIdFactura(Integer idFactura) {
+        this.idFactura = idFactura;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public Date getFechafactura() {
+        return fechafactura;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechafactura(Date fechafactura) {
+        this.fechafactura = fechafactura;
     }
 
-    @XmlTransient
-    public Collection<Rubro> getRubroCollection() {
-        return rubroCollection;
+    public Usuario getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setRubroCollection(Collection<Rubro> rubroCollection) {
-        this.rubroCollection = rubroCollection;
-    }
-
-    public RubroFacruea getIdRubroFacrura() {
-        return idRubroFacrura;
-    }
-
-    public void setIdRubroFacrura(RubroFacruea idRubroFacrura) {
-        this.idRubroFacrura = idRubroFacrura;
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     @XmlTransient
-    public Collection<Proveedor> getProveedorCollection() {
-        return proveedorCollection;
+    public Collection<FacturaRubro> getFacturaRubroCollection() {
+        return facturaRubroCollection;
     }
 
-    public void setProveedorCollection(Collection<Proveedor> proveedorCollection) {
-        this.proveedorCollection = proveedorCollection;
+    public void setFacturaRubroCollection(Collection<FacturaRubro> facturaRubroCollection) {
+        this.facturaRubroCollection = facturaRubroCollection;
     }
 
     @XmlTransient
-    public Collection<Detalle> getDetalleCollection() {
-        return detalleCollection;
+    public Collection<ProveedorFactura> getProveedorFacturaCollection() {
+        return proveedorFacturaCollection;
     }
 
-    public void setDetalleCollection(Collection<Detalle> detalleCollection) {
-        this.detalleCollection = detalleCollection;
+    public void setProveedorFacturaCollection(Collection<ProveedorFactura> proveedorFacturaCollection) {
+        this.proveedorFacturaCollection = proveedorFacturaCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idFactu != null ? idFactu.hashCode() : 0);
+        hash += (idFactura != null ? idFactura.hashCode() : 0);
         return hash;
     }
 
@@ -140,7 +124,7 @@ public class Factura implements Serializable {
             return false;
         }
         Factura other = (Factura) object;
-        if ((this.idFactu == null && other.idFactu != null) || (this.idFactu != null && !this.idFactu.equals(other.idFactu))) {
+        if ((this.idFactura == null && other.idFactura != null) || (this.idFactura != null && !this.idFactura.equals(other.idFactura))) {
             return false;
         }
         return true;
@@ -148,7 +132,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ec.entidades.Factura[ idFactu=" + idFactu + " ]";
+        return "com.ec.entidades.Factura[ idFactura=" + idFactura + " ]";
     }
     
 }

@@ -10,9 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.ec.entidades.DetalleRubro;
-import com.ec.entidades.RubroFacruea;
-import com.ec.entidades.Factura;
+import com.ec.entidades.FacturaRubro;
 import com.ec.entidades.Rubro;
 import com.ec.servicios.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
@@ -37,41 +35,28 @@ public class RubroJpaController implements Serializable {
     }
 
     public void create(Rubro rubro) {
-        if (rubro.getFacturaCollection() == null) {
-            rubro.setFacturaCollection(new ArrayList<Factura>());
+        if (rubro.getFacturaRubroCollection() == null) {
+            rubro.setFacturaRubroCollection(new ArrayList<FacturaRubro>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            DetalleRubro idDetalleRubro = rubro.getIdDetalleRubro();
-            if (idDetalleRubro != null) {
-                idDetalleRubro = em.getReference(idDetalleRubro.getClass(), idDetalleRubro.getIdDetalleRubro());
-                rubro.setIdDetalleRubro(idDetalleRubro);
+            Collection<FacturaRubro> attachedFacturaRubroCollection = new ArrayList<FacturaRubro>();
+            for (FacturaRubro facturaRubroCollectionFacturaRubroToAttach : rubro.getFacturaRubroCollection()) {
+                facturaRubroCollectionFacturaRubroToAttach = em.getReference(facturaRubroCollectionFacturaRubroToAttach.getClass(), facturaRubroCollectionFacturaRubroToAttach.getIdDetRub());
+                attachedFacturaRubroCollection.add(facturaRubroCollectionFacturaRubroToAttach);
             }
-            RubroFacruea idRubroFacrura = rubro.getIdRubroFacrura();
-            if (idRubroFacrura != null) {
-                idRubroFacrura = em.getReference(idRubroFacrura.getClass(), idRubroFacrura.getIdRubroFacrura());
-                rubro.setIdRubroFacrura(idRubroFacrura);
-            }
-            Collection<Factura> attachedFacturaCollection = new ArrayList<Factura>();
-            for (Factura facturaCollectionFacturaToAttach : rubro.getFacturaCollection()) {
-                facturaCollectionFacturaToAttach = em.getReference(facturaCollectionFacturaToAttach.getClass(), facturaCollectionFacturaToAttach.getIdFactu());
-                attachedFacturaCollection.add(facturaCollectionFacturaToAttach);
-            }
-            rubro.setFacturaCollection(attachedFacturaCollection);
+            rubro.setFacturaRubroCollection(attachedFacturaRubroCollection);
             em.persist(rubro);
-            if (idDetalleRubro != null) {
-                idDetalleRubro.getRubroCollection().add(rubro);
-                idDetalleRubro = em.merge(idDetalleRubro);
-            }
-            if (idRubroFacrura != null) {
-                idRubroFacrura.getRubroCollection().add(rubro);
-                idRubroFacrura = em.merge(idRubroFacrura);
-            }
-            for (Factura facturaCollectionFactura : rubro.getFacturaCollection()) {
-                facturaCollectionFactura.getRubroCollection().add(rubro);
-                facturaCollectionFactura = em.merge(facturaCollectionFactura);
+            for (FacturaRubro facturaRubroCollectionFacturaRubro : rubro.getFacturaRubroCollection()) {
+                Rubro oldIdRubroOfFacturaRubroCollectionFacturaRubro = facturaRubroCollectionFacturaRubro.getIdRubro();
+                facturaRubroCollectionFacturaRubro.setIdRubro(rubro);
+                facturaRubroCollectionFacturaRubro = em.merge(facturaRubroCollectionFacturaRubro);
+                if (oldIdRubroOfFacturaRubroCollectionFacturaRubro != null) {
+                    oldIdRubroOfFacturaRubroCollectionFacturaRubro.getFacturaRubroCollection().remove(facturaRubroCollectionFacturaRubro);
+                    oldIdRubroOfFacturaRubroCollectionFacturaRubro = em.merge(oldIdRubroOfFacturaRubroCollectionFacturaRubro);
+                }
             }
             em.getTransaction().commit();
         } finally {
@@ -87,54 +72,31 @@ public class RubroJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Rubro persistentRubro = em.find(Rubro.class, rubro.getIdRubro());
-            DetalleRubro idDetalleRubroOld = persistentRubro.getIdDetalleRubro();
-            DetalleRubro idDetalleRubroNew = rubro.getIdDetalleRubro();
-            RubroFacruea idRubroFacruraOld = persistentRubro.getIdRubroFacrura();
-            RubroFacruea idRubroFacruraNew = rubro.getIdRubroFacrura();
-            Collection<Factura> facturaCollectionOld = persistentRubro.getFacturaCollection();
-            Collection<Factura> facturaCollectionNew = rubro.getFacturaCollection();
-            if (idDetalleRubroNew != null) {
-                idDetalleRubroNew = em.getReference(idDetalleRubroNew.getClass(), idDetalleRubroNew.getIdDetalleRubro());
-                rubro.setIdDetalleRubro(idDetalleRubroNew);
+            Collection<FacturaRubro> facturaRubroCollectionOld = persistentRubro.getFacturaRubroCollection();
+            Collection<FacturaRubro> facturaRubroCollectionNew = rubro.getFacturaRubroCollection();
+            Collection<FacturaRubro> attachedFacturaRubroCollectionNew = new ArrayList<FacturaRubro>();
+            for (FacturaRubro facturaRubroCollectionNewFacturaRubroToAttach : facturaRubroCollectionNew) {
+                facturaRubroCollectionNewFacturaRubroToAttach = em.getReference(facturaRubroCollectionNewFacturaRubroToAttach.getClass(), facturaRubroCollectionNewFacturaRubroToAttach.getIdDetRub());
+                attachedFacturaRubroCollectionNew.add(facturaRubroCollectionNewFacturaRubroToAttach);
             }
-            if (idRubroFacruraNew != null) {
-                idRubroFacruraNew = em.getReference(idRubroFacruraNew.getClass(), idRubroFacruraNew.getIdRubroFacrura());
-                rubro.setIdRubroFacrura(idRubroFacruraNew);
-            }
-            Collection<Factura> attachedFacturaCollectionNew = new ArrayList<Factura>();
-            for (Factura facturaCollectionNewFacturaToAttach : facturaCollectionNew) {
-                facturaCollectionNewFacturaToAttach = em.getReference(facturaCollectionNewFacturaToAttach.getClass(), facturaCollectionNewFacturaToAttach.getIdFactu());
-                attachedFacturaCollectionNew.add(facturaCollectionNewFacturaToAttach);
-            }
-            facturaCollectionNew = attachedFacturaCollectionNew;
-            rubro.setFacturaCollection(facturaCollectionNew);
+            facturaRubroCollectionNew = attachedFacturaRubroCollectionNew;
+            rubro.setFacturaRubroCollection(facturaRubroCollectionNew);
             rubro = em.merge(rubro);
-            if (idDetalleRubroOld != null && !idDetalleRubroOld.equals(idDetalleRubroNew)) {
-                idDetalleRubroOld.getRubroCollection().remove(rubro);
-                idDetalleRubroOld = em.merge(idDetalleRubroOld);
-            }
-            if (idDetalleRubroNew != null && !idDetalleRubroNew.equals(idDetalleRubroOld)) {
-                idDetalleRubroNew.getRubroCollection().add(rubro);
-                idDetalleRubroNew = em.merge(idDetalleRubroNew);
-            }
-            if (idRubroFacruraOld != null && !idRubroFacruraOld.equals(idRubroFacruraNew)) {
-                idRubroFacruraOld.getRubroCollection().remove(rubro);
-                idRubroFacruraOld = em.merge(idRubroFacruraOld);
-            }
-            if (idRubroFacruraNew != null && !idRubroFacruraNew.equals(idRubroFacruraOld)) {
-                idRubroFacruraNew.getRubroCollection().add(rubro);
-                idRubroFacruraNew = em.merge(idRubroFacruraNew);
-            }
-            for (Factura facturaCollectionOldFactura : facturaCollectionOld) {
-                if (!facturaCollectionNew.contains(facturaCollectionOldFactura)) {
-                    facturaCollectionOldFactura.getRubroCollection().remove(rubro);
-                    facturaCollectionOldFactura = em.merge(facturaCollectionOldFactura);
+            for (FacturaRubro facturaRubroCollectionOldFacturaRubro : facturaRubroCollectionOld) {
+                if (!facturaRubroCollectionNew.contains(facturaRubroCollectionOldFacturaRubro)) {
+                    facturaRubroCollectionOldFacturaRubro.setIdRubro(null);
+                    facturaRubroCollectionOldFacturaRubro = em.merge(facturaRubroCollectionOldFacturaRubro);
                 }
             }
-            for (Factura facturaCollectionNewFactura : facturaCollectionNew) {
-                if (!facturaCollectionOld.contains(facturaCollectionNewFactura)) {
-                    facturaCollectionNewFactura.getRubroCollection().add(rubro);
-                    facturaCollectionNewFactura = em.merge(facturaCollectionNewFactura);
+            for (FacturaRubro facturaRubroCollectionNewFacturaRubro : facturaRubroCollectionNew) {
+                if (!facturaRubroCollectionOld.contains(facturaRubroCollectionNewFacturaRubro)) {
+                    Rubro oldIdRubroOfFacturaRubroCollectionNewFacturaRubro = facturaRubroCollectionNewFacturaRubro.getIdRubro();
+                    facturaRubroCollectionNewFacturaRubro.setIdRubro(rubro);
+                    facturaRubroCollectionNewFacturaRubro = em.merge(facturaRubroCollectionNewFacturaRubro);
+                    if (oldIdRubroOfFacturaRubroCollectionNewFacturaRubro != null && !oldIdRubroOfFacturaRubroCollectionNewFacturaRubro.equals(rubro)) {
+                        oldIdRubroOfFacturaRubroCollectionNewFacturaRubro.getFacturaRubroCollection().remove(facturaRubroCollectionNewFacturaRubro);
+                        oldIdRubroOfFacturaRubroCollectionNewFacturaRubro = em.merge(oldIdRubroOfFacturaRubroCollectionNewFacturaRubro);
+                    }
                 }
             }
             em.getTransaction().commit();
@@ -166,20 +128,10 @@ public class RubroJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The rubro with id " + id + " no longer exists.", enfe);
             }
-            DetalleRubro idDetalleRubro = rubro.getIdDetalleRubro();
-            if (idDetalleRubro != null) {
-                idDetalleRubro.getRubroCollection().remove(rubro);
-                idDetalleRubro = em.merge(idDetalleRubro);
-            }
-            RubroFacruea idRubroFacrura = rubro.getIdRubroFacrura();
-            if (idRubroFacrura != null) {
-                idRubroFacrura.getRubroCollection().remove(rubro);
-                idRubroFacrura = em.merge(idRubroFacrura);
-            }
-            Collection<Factura> facturaCollection = rubro.getFacturaCollection();
-            for (Factura facturaCollectionFactura : facturaCollection) {
-                facturaCollectionFactura.getRubroCollection().remove(rubro);
-                facturaCollectionFactura = em.merge(facturaCollectionFactura);
+            Collection<FacturaRubro> facturaRubroCollection = rubro.getFacturaRubroCollection();
+            for (FacturaRubro facturaRubroCollectionFacturaRubro : facturaRubroCollection) {
+                facturaRubroCollectionFacturaRubro.setIdRubro(null);
+                facturaRubroCollectionFacturaRubro = em.merge(facturaRubroCollectionFacturaRubro);
             }
             em.remove(rubro);
             em.getTransaction().commit();

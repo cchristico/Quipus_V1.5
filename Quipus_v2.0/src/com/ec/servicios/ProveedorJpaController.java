@@ -5,14 +5,16 @@
  */
 package com.ec.servicios;
 
+import com.ec.entidades.Proveedor;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.ec.entidades.Factura;
-import com.ec.entidades.Proveedor;
+import com.ec.entidades.ProveedorFactura;
 import com.ec.servicios.exceptions.NonexistentEntityException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -33,19 +35,28 @@ public class ProveedorJpaController implements Serializable {
     }
 
     public void create(Proveedor proveedor) {
+        if (proveedor.getProveedorFacturaCollection() == null) {
+            proveedor.setProveedorFacturaCollection(new ArrayList<ProveedorFactura>());
+        }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Factura idFactu = proveedor.getIdFactu();
-            if (idFactu != null) {
-                idFactu = em.getReference(idFactu.getClass(), idFactu.getIdFactu());
-                proveedor.setIdFactu(idFactu);
+            Collection<ProveedorFactura> attachedProveedorFacturaCollection = new ArrayList<ProveedorFactura>();
+            for (ProveedorFactura proveedorFacturaCollectionProveedorFacturaToAttach : proveedor.getProveedorFacturaCollection()) {
+                proveedorFacturaCollectionProveedorFacturaToAttach = em.getReference(proveedorFacturaCollectionProveedorFacturaToAttach.getClass(), proveedorFacturaCollectionProveedorFacturaToAttach.getIdProveeFacturador());
+                attachedProveedorFacturaCollection.add(proveedorFacturaCollectionProveedorFacturaToAttach);
             }
+            proveedor.setProveedorFacturaCollection(attachedProveedorFacturaCollection);
             em.persist(proveedor);
-            if (idFactu != null) {
-                idFactu.getProveedorCollection().add(proveedor);
-                idFactu = em.merge(idFactu);
+            for (ProveedorFactura proveedorFacturaCollectionProveedorFactura : proveedor.getProveedorFacturaCollection()) {
+                Proveedor oldIdProveedorOfProveedorFacturaCollectionProveedorFactura = proveedorFacturaCollectionProveedorFactura.getIdProveedor();
+                proveedorFacturaCollectionProveedorFactura.setIdProveedor(proveedor);
+                proveedorFacturaCollectionProveedorFactura = em.merge(proveedorFacturaCollectionProveedorFactura);
+                if (oldIdProveedorOfProveedorFacturaCollectionProveedorFactura != null) {
+                    oldIdProveedorOfProveedorFacturaCollectionProveedorFactura.getProveedorFacturaCollection().remove(proveedorFacturaCollectionProveedorFactura);
+                    oldIdProveedorOfProveedorFacturaCollectionProveedorFactura = em.merge(oldIdProveedorOfProveedorFacturaCollectionProveedorFactura);
+                }
             }
             em.getTransaction().commit();
         } finally {
@@ -61,20 +72,32 @@ public class ProveedorJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Proveedor persistentProveedor = em.find(Proveedor.class, proveedor.getIdProveedor());
-            Factura idFactuOld = persistentProveedor.getIdFactu();
-            Factura idFactuNew = proveedor.getIdFactu();
-            if (idFactuNew != null) {
-                idFactuNew = em.getReference(idFactuNew.getClass(), idFactuNew.getIdFactu());
-                proveedor.setIdFactu(idFactuNew);
+            Collection<ProveedorFactura> proveedorFacturaCollectionOld = persistentProveedor.getProveedorFacturaCollection();
+            Collection<ProveedorFactura> proveedorFacturaCollectionNew = proveedor.getProveedorFacturaCollection();
+            Collection<ProveedorFactura> attachedProveedorFacturaCollectionNew = new ArrayList<ProveedorFactura>();
+            for (ProveedorFactura proveedorFacturaCollectionNewProveedorFacturaToAttach : proveedorFacturaCollectionNew) {
+                proveedorFacturaCollectionNewProveedorFacturaToAttach = em.getReference(proveedorFacturaCollectionNewProveedorFacturaToAttach.getClass(), proveedorFacturaCollectionNewProveedorFacturaToAttach.getIdProveeFacturador());
+                attachedProveedorFacturaCollectionNew.add(proveedorFacturaCollectionNewProveedorFacturaToAttach);
             }
+            proveedorFacturaCollectionNew = attachedProveedorFacturaCollectionNew;
+            proveedor.setProveedorFacturaCollection(proveedorFacturaCollectionNew);
             proveedor = em.merge(proveedor);
-            if (idFactuOld != null && !idFactuOld.equals(idFactuNew)) {
-                idFactuOld.getProveedorCollection().remove(proveedor);
-                idFactuOld = em.merge(idFactuOld);
+            for (ProveedorFactura proveedorFacturaCollectionOldProveedorFactura : proveedorFacturaCollectionOld) {
+                if (!proveedorFacturaCollectionNew.contains(proveedorFacturaCollectionOldProveedorFactura)) {
+                    proveedorFacturaCollectionOldProveedorFactura.setIdProveedor(null);
+                    proveedorFacturaCollectionOldProveedorFactura = em.merge(proveedorFacturaCollectionOldProveedorFactura);
+                }
             }
-            if (idFactuNew != null && !idFactuNew.equals(idFactuOld)) {
-                idFactuNew.getProveedorCollection().add(proveedor);
-                idFactuNew = em.merge(idFactuNew);
+            for (ProveedorFactura proveedorFacturaCollectionNewProveedorFactura : proveedorFacturaCollectionNew) {
+                if (!proveedorFacturaCollectionOld.contains(proveedorFacturaCollectionNewProveedorFactura)) {
+                    Proveedor oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura = proveedorFacturaCollectionNewProveedorFactura.getIdProveedor();
+                    proveedorFacturaCollectionNewProveedorFactura.setIdProveedor(proveedor);
+                    proveedorFacturaCollectionNewProveedorFactura = em.merge(proveedorFacturaCollectionNewProveedorFactura);
+                    if (oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura != null && !oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura.equals(proveedor)) {
+                        oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura.getProveedorFacturaCollection().remove(proveedorFacturaCollectionNewProveedorFactura);
+                        oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura = em.merge(oldIdProveedorOfProveedorFacturaCollectionNewProveedorFactura);
+                    }
+                }
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
@@ -105,10 +128,10 @@ public class ProveedorJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The proveedor with id " + id + " no longer exists.", enfe);
             }
-            Factura idFactu = proveedor.getIdFactu();
-            if (idFactu != null) {
-                idFactu.getProveedorCollection().remove(proveedor);
-                idFactu = em.merge(idFactu);
+            Collection<ProveedorFactura> proveedorFacturaCollection = proveedor.getProveedorFacturaCollection();
+            for (ProveedorFactura proveedorFacturaCollectionProveedorFactura : proveedorFacturaCollection) {
+                proveedorFacturaCollectionProveedorFactura.setIdProveedor(null);
+                proveedorFacturaCollectionProveedorFactura = em.merge(proveedorFacturaCollectionProveedorFactura);
             }
             em.remove(proveedor);
             em.getTransaction().commit();

@@ -5,6 +5,7 @@
  */
 package com.ec.servicios.usuarios;
 
+import com.ec.negocio.GeneralValidations;
 import com.ec.entidades.Usuario;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

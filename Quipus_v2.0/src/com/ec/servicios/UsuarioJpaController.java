@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.ec.entidades.Detalle;
+import com.ec.entidades.Factura;
 import com.ec.entidades.Usuario;
 import com.ec.servicios.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
@@ -35,27 +35,27 @@ public class UsuarioJpaController implements Serializable {
     }
 
     public void create(Usuario usuario) {
-        if (usuario.getDetalleCollection() == null) {
-            usuario.setDetalleCollection(new ArrayList<Detalle>());
+        if (usuario.getFacturaCollection() == null) {
+            usuario.setFacturaCollection(new ArrayList<Factura>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Detalle> attachedDetalleCollection = new ArrayList<Detalle>();
-            for (Detalle detalleCollectionDetalleToAttach : usuario.getDetalleCollection()) {
-                detalleCollectionDetalleToAttach = em.getReference(detalleCollectionDetalleToAttach.getClass(), detalleCollectionDetalleToAttach.getIdDetalle());
-                attachedDetalleCollection.add(detalleCollectionDetalleToAttach);
+            Collection<Factura> attachedFacturaCollection = new ArrayList<Factura>();
+            for (Factura facturaCollectionFacturaToAttach : usuario.getFacturaCollection()) {
+                facturaCollectionFacturaToAttach = em.getReference(facturaCollectionFacturaToAttach.getClass(), facturaCollectionFacturaToAttach.getIdFactura());
+                attachedFacturaCollection.add(facturaCollectionFacturaToAttach);
             }
-            usuario.setDetalleCollection(attachedDetalleCollection);
+            usuario.setFacturaCollection(attachedFacturaCollection);
             em.persist(usuario);
-            for (Detalle detalleCollectionDetalle : usuario.getDetalleCollection()) {
-                Usuario oldIdUsuarioOfDetalleCollectionDetalle = detalleCollectionDetalle.getIdUsuario();
-                detalleCollectionDetalle.setIdUsuario(usuario);
-                detalleCollectionDetalle = em.merge(detalleCollectionDetalle);
-                if (oldIdUsuarioOfDetalleCollectionDetalle != null) {
-                    oldIdUsuarioOfDetalleCollectionDetalle.getDetalleCollection().remove(detalleCollectionDetalle);
-                    oldIdUsuarioOfDetalleCollectionDetalle = em.merge(oldIdUsuarioOfDetalleCollectionDetalle);
+            for (Factura facturaCollectionFactura : usuario.getFacturaCollection()) {
+                Usuario oldIdUsuarioOfFacturaCollectionFactura = facturaCollectionFactura.getIdUsuario();
+                facturaCollectionFactura.setIdUsuario(usuario);
+                facturaCollectionFactura = em.merge(facturaCollectionFactura);
+                if (oldIdUsuarioOfFacturaCollectionFactura != null) {
+                    oldIdUsuarioOfFacturaCollectionFactura.getFacturaCollection().remove(facturaCollectionFactura);
+                    oldIdUsuarioOfFacturaCollectionFactura = em.merge(oldIdUsuarioOfFacturaCollectionFactura);
                 }
             }
             em.getTransaction().commit();
@@ -72,30 +72,30 @@ public class UsuarioJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Usuario persistentUsuario = em.find(Usuario.class, usuario.getIdUsuario());
-            Collection<Detalle> detalleCollectionOld = persistentUsuario.getDetalleCollection();
-            Collection<Detalle> detalleCollectionNew = usuario.getDetalleCollection();
-            Collection<Detalle> attachedDetalleCollectionNew = new ArrayList<Detalle>();
-            for (Detalle detalleCollectionNewDetalleToAttach : detalleCollectionNew) {
-                detalleCollectionNewDetalleToAttach = em.getReference(detalleCollectionNewDetalleToAttach.getClass(), detalleCollectionNewDetalleToAttach.getIdDetalle());
-                attachedDetalleCollectionNew.add(detalleCollectionNewDetalleToAttach);
+            Collection<Factura> facturaCollectionOld = persistentUsuario.getFacturaCollection();
+            Collection<Factura> facturaCollectionNew = usuario.getFacturaCollection();
+            Collection<Factura> attachedFacturaCollectionNew = new ArrayList<Factura>();
+            for (Factura facturaCollectionNewFacturaToAttach : facturaCollectionNew) {
+                facturaCollectionNewFacturaToAttach = em.getReference(facturaCollectionNewFacturaToAttach.getClass(), facturaCollectionNewFacturaToAttach.getIdFactura());
+                attachedFacturaCollectionNew.add(facturaCollectionNewFacturaToAttach);
             }
-            detalleCollectionNew = attachedDetalleCollectionNew;
-            usuario.setDetalleCollection(detalleCollectionNew);
+            facturaCollectionNew = attachedFacturaCollectionNew;
+            usuario.setFacturaCollection(facturaCollectionNew);
             usuario = em.merge(usuario);
-            for (Detalle detalleCollectionOldDetalle : detalleCollectionOld) {
-                if (!detalleCollectionNew.contains(detalleCollectionOldDetalle)) {
-                    detalleCollectionOldDetalle.setIdUsuario(null);
-                    detalleCollectionOldDetalle = em.merge(detalleCollectionOldDetalle);
+            for (Factura facturaCollectionOldFactura : facturaCollectionOld) {
+                if (!facturaCollectionNew.contains(facturaCollectionOldFactura)) {
+                    facturaCollectionOldFactura.setIdUsuario(null);
+                    facturaCollectionOldFactura = em.merge(facturaCollectionOldFactura);
                 }
             }
-            for (Detalle detalleCollectionNewDetalle : detalleCollectionNew) {
-                if (!detalleCollectionOld.contains(detalleCollectionNewDetalle)) {
-                    Usuario oldIdUsuarioOfDetalleCollectionNewDetalle = detalleCollectionNewDetalle.getIdUsuario();
-                    detalleCollectionNewDetalle.setIdUsuario(usuario);
-                    detalleCollectionNewDetalle = em.merge(detalleCollectionNewDetalle);
-                    if (oldIdUsuarioOfDetalleCollectionNewDetalle != null && !oldIdUsuarioOfDetalleCollectionNewDetalle.equals(usuario)) {
-                        oldIdUsuarioOfDetalleCollectionNewDetalle.getDetalleCollection().remove(detalleCollectionNewDetalle);
-                        oldIdUsuarioOfDetalleCollectionNewDetalle = em.merge(oldIdUsuarioOfDetalleCollectionNewDetalle);
+            for (Factura facturaCollectionNewFactura : facturaCollectionNew) {
+                if (!facturaCollectionOld.contains(facturaCollectionNewFactura)) {
+                    Usuario oldIdUsuarioOfFacturaCollectionNewFactura = facturaCollectionNewFactura.getIdUsuario();
+                    facturaCollectionNewFactura.setIdUsuario(usuario);
+                    facturaCollectionNewFactura = em.merge(facturaCollectionNewFactura);
+                    if (oldIdUsuarioOfFacturaCollectionNewFactura != null && !oldIdUsuarioOfFacturaCollectionNewFactura.equals(usuario)) {
+                        oldIdUsuarioOfFacturaCollectionNewFactura.getFacturaCollection().remove(facturaCollectionNewFactura);
+                        oldIdUsuarioOfFacturaCollectionNewFactura = em.merge(oldIdUsuarioOfFacturaCollectionNewFactura);
                     }
                 }
             }
@@ -128,10 +128,10 @@ public class UsuarioJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
-            Collection<Detalle> detalleCollection = usuario.getDetalleCollection();
-            for (Detalle detalleCollectionDetalle : detalleCollection) {
-                detalleCollectionDetalle.setIdUsuario(null);
-                detalleCollectionDetalle = em.merge(detalleCollectionDetalle);
+            Collection<Factura> facturaCollection = usuario.getFacturaCollection();
+            for (Factura facturaCollectionFactura : facturaCollection) {
+                facturaCollectionFactura.setIdUsuario(null);
+                facturaCollectionFactura = em.merge(facturaCollectionFactura);
             }
             em.remove(usuario);
             em.getTransaction().commit();

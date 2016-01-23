@@ -6,7 +6,6 @@
 package com.ec.servicios.usuarios;
 
 import com.ec.entidades.Usuario;
-import com.ec.servicios.UsuarioJpaController;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 

@@ -9,7 +9,7 @@
 /*==============================================================*/
 create table FACTURA
 (
-   ID_FACTURA           int not null,
+   ID_FACTURA           INT(11) NOT NULL AUTO_INCREMENT,
    ID_USUARIO           int,
    FECHAFACTURA         date not null,
    primary key (ID_FACTURA)
@@ -20,7 +20,7 @@ create table FACTURA
 /*==============================================================*/
 create table FACTURA_RUBRO
 (
-   ID_DET_RUB           int not null,
+   ID_DET_RUB          INT(11) NOT NULL AUTO_INCREMENT,
    ID_FACTURA           int,
    ID_RUBRO             int,
    VALOR                decimal(8,3) not null,
@@ -32,7 +32,7 @@ create table FACTURA_RUBRO
 /*==============================================================*/
 create table PROVEEDOR
 (
-   ID_PROVEEDOR         int not null,
+   ID_PROVEEDOR         INT(11) NOT NULL AUTO_INCREMENT,
    RUC_PROVEEDOR        char(13) not null,
    NOMBRE_PROVEEDOR     char(30) not null,
    primary key (ID_PROVEEDOR)
@@ -43,7 +43,7 @@ create table PROVEEDOR
 /*==============================================================*/
 create table PROVEEDOR_FACTURA
 (
-   ID_PROVEE_FACTURADOR int not null,
+   ID_PROVEE_FACTURADOR INT(11) NOT NULL AUTO_INCREMENT,
    ID_FACTURA           int,
    ID_PROVEEDOR         int,
    VALOR_PROVEEDOR      decimal(8,3) not null,
@@ -55,7 +55,7 @@ create table PROVEEDOR_FACTURA
 /*==============================================================*/
 create table RUBRO
 (
-   ID_RUBRO             int not null,
+   ID_RUBRO             INT(11) NOT NULL AUTO_INCREMENT,
    NOMBRE_RUBRO         char(25) not null,
    VALOR_MAXIMO         decimal(8,3) not null,
    primary key (ID_RUBRO)
@@ -66,7 +66,7 @@ create table RUBRO
 /*==============================================================*/
 create table USUARIO
 (
-   ID_USUARIO           int not null,
+   ID_USUARIO           INT(11) NOT NULL AUTO_INCREMENT,
    NOMBRE_USUARIO       char(40) not null,
    CEDULA_USUARIO       char(10) not null,
    primary key (ID_USUARIO)
