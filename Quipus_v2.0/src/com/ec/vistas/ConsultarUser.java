@@ -11,12 +11,12 @@ import javax.swing.JOptionPane;
  *
  * @author Cchristico
  */
-public class RestablecerPasword extends javax.swing.JFrame {
+public class ConsultarUser extends javax.swing.JFrame {
 
     /**
      * Creates new form RestablecerPasword
      */
-    public RestablecerPasword() {
+    public ConsultarUser() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -87,12 +87,11 @@ public class RestablecerPasword extends javax.swing.JFrame {
 
     private void btnRestablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestablecerActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showOptionDialog(null,"Seleccione","Selector de Opciones",JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE,null,// null para icono por defecto.
-  new Object[] { "opcion 1", "opcion 2", "opcion 3"},"opcion 1");// WIDTH, WIDTH, null, options, rootPane);
-  JOptionPane.showConfirmDialog(null, "Constraseña Reestablecida");
-this.setVisible(false);
-Login log = new Login();
-log.setVisible(true);
+        
+        
+        
+        Login log = new Login();
+        log.setVisible(true);
     }//GEN-LAST:event_btnRestablecerActionPerformed
 
     /**
@@ -112,14 +111,22 @@ log.setVisible(true);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RestablecerPasword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RestablecerPasword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RestablecerPasword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RestablecerPasword.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultarUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -132,7 +139,7 @@ log.setVisible(true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RestablecerPasword().setVisible(true);
+                new ConsultarUser().setVisible(true);
             }
         });
     }

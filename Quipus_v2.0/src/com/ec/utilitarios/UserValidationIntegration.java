@@ -53,6 +53,7 @@ private boolean validFiedls(Usuario usuario)
     GeneralValidations validation = new GeneralValidations();
     validation.CIValidation(usuario.getCedulaUsuario(), "C.I.");
     validation.validteEmptyField(usuario.getNombreUsuario(), "Nombres y Apellidos");
+    validation.userDuplication(usuario);
     /*Registro repetido*/
     return !validation.ErrorMesgIsEmpy();                     
 }

@@ -167,7 +167,7 @@ public class Login extends javax.swing.JFrame {
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
         // TODO add your handling code here:
         this.setVisible(false);
-        RestablecerPasword res = new RestablecerPasword();
+        ConsultarUser res = new ConsultarUser();
         res.setVisible(true);
     }//GEN-LAST:event_jLabel4MousePressed
 

@@ -4,6 +4,7 @@ import com.ec.entidades.Usuario;
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
@@ -325,7 +326,6 @@ public class GeneralValidations {
         
         //Comprobar usuario y contraseña//
         
-        
         public void UserExist(Usuario usuario)
 {
     try {
@@ -342,7 +342,28 @@ public class GeneralValidations {
     }
         
 }
+   //Comprobar Usuarios Repetidos
         
+        public void userDuplication(Usuario usuario)
+        {
+            try {
+                EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
+    EntityManager entityManager = emFac.createEntityManager();
+    Query query1 = entityManager.createQuery("Select u from Usuario u where u.cedulaUsuario = :usuarioCI or u.nombreUsuario= :usuarioName");
+    query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
+            .setParameter("usuarioName", usuario.getNombreUsuario());
+    
+                    errorMessage +="El usuario ya se encuntra ingresado";
+                List<Usuario> list = query1.getResultList();
+                String nomUsr = list.get(2).toString();
+                System.out.println(nomUsr);
+                System.out.println(list);
+    //int resutado = (int) query1.getSingleResult();                 
+            } catch (Exception e) {
+                
+            }
+                
+        }
         
         
         
