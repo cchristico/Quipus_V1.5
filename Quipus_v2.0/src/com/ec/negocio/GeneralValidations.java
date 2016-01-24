@@ -1,10 +1,15 @@
 package com.ec.negocio;
 
+import com.ec.entidades.Usuario;
 import java.io.FileNotFoundException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -317,19 +322,39 @@ public class GeneralValidations {
 
 	}
 
-	/**
-	 * Método para validar si 2 contraseñas coinciden
-	 * 
-	 * @param contrasena
-	 *            un objeto de tipo JPasswordTextField
-	 * @param confirmacionContrasena
-	 *            dato de tipo String referencial al contenido del objeto
-	 */
-	public void matchPassw(String contrasena,String confirmacionContrasena) {
-		if (!contrasena.equals(confirmacionContrasena)) {
-			errorMessage += "Contraseñas no coinciden \n";
-		}
-	}        
+        
+        //Comprobar usuario y contraseña//
+        
+        
+        public void UserExist(Usuario usuario)
+{
+    try {
+        EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
+    EntityManager entityManager = emFac.createEntityManager();
+    Query query1 = entityManager.createQuery("Select u.idUsuario from Usuario u where u.cedulaUsuario = :usuarioCI and u.nombreUsuario= :usuarioName");
+    query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
+            .setParameter("usuarioName", usuario.getNombreUsuario());
+    int resutado = (int) query1.getSingleResult(); 
+    System.out.println("ID"+resutado);
+    usuario.setIdUsuario(resutado);
+    } catch (Exception e) {
+        errorMessage+="El usuario no se encuentra registrado \n Verifique la información";
+    }
+        
+}
+        
+        
+        
+        
+        //////////////
+        
+        public void repeatUser(Usuario usuario)
+        {
+            
+        }
+        
+        
+        
         public boolean ErrorMesgIsEmpy() {
 		if (!errorMessage.equals("")) {
 			JOptionPane.showMessageDialog(null, errorMessage, "Error",
@@ -341,5 +366,7 @@ public class GeneralValidations {
 			return false;
 		}
 	}
+        
+        
         
 }

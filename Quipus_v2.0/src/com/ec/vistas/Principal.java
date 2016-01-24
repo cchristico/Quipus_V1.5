@@ -134,7 +134,7 @@ public class Principal extends javax.swing.JFrame {
     }                                          
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-        login objLogin = new login();
+        Login objLogin = new Login();
         objLogin.setVisible(true);
         this.setVisible(false);
         

@@ -147,7 +147,7 @@ Usuario usr = new Usuario();
 
 JOptionPane.showConfirmDialog(null, "Usuario agregado");
 this.setVisible(false);
-login log = new login();
+Login log = new Login();
 log.setVisible(true);
         
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -162,7 +162,7 @@ log.setVisible(true);
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.setVisible(false);
-        login log = new login();
+        Login log = new Login();
         log.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 

@@ -7,6 +7,8 @@ package com.ec.utilitarios;
 import com.ec.negocio.GeneralValidations;
 import com.ec.entidades.Usuario;
 import com.ec.servicios.UsuarioJpaController;
+import com.ec.vistas.Login;
+import com.ec.vistas.Principal;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,7 +33,17 @@ public void UserCreation(Usuario usuario)
 
 public void Loging(Usuario usuario)
 {
-    
+    if(logUser(usuario))
+    {
+        Principal main = new Principal();
+        main.setVisible(true);
+        Login log = new Login();
+        log.setVisible(false);
+    }
+    else{
+        Login log = new Login();
+        log.setVisible(true);
+    }
 }
 
 
@@ -45,16 +57,11 @@ private boolean validFiedls(Usuario usuario)
     return !validation.ErrorMesgIsEmpy();                     
 }
 
-public boolean  UserExist(Usuario usuario)
+private boolean logUser(Usuario usuario)
 {
-        EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
-    EntityManager entityManager = emFac.createEntityManager();
-    Query query1 = entityManager.createQuery("Select u.idUsuario from Usuario u where u.cedulaUsuario = :usuarioCI and u.nombreUsuario= :usuarioName");
-    query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
-            .setParameter("usuarioName", usuario.getNombreUsuario());
-    int resutado = (int) query1.getSingleResult(); 
-    System.out.println("ID"+resutado);
-    return true;
+    GeneralValidations val = new GeneralValidations();
+    val.UserExist(usuario);
+    return !val.ErrorMesgIsEmpy();
 }
 
 }
