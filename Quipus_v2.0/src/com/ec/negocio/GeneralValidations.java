@@ -352,11 +352,12 @@ public class GeneralValidations {
     Query query1 = entityManager.createQuery("Select u from Usuario u where u.cedulaUsuario = :usuarioCI or u.nombreUsuario= :usuarioName");
     query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
             .setParameter("usuarioName", usuario.getNombreUsuario());
-    
-                    errorMessage +="El usuario ya se encuntra ingresado";
                 List<Usuario> list = query1.getResultList();
-                String nomUsr = list.get(2).toString();
-                System.out.println(nomUsr);
+                if(!list.isEmpty())
+                {
+                    errorMessage +="Estos datos ya estan ingresdos";
+                }
+                
                 System.out.println(list);
     //int resutado = (int) query1.getSingleResult();                 
             } catch (Exception e) {
