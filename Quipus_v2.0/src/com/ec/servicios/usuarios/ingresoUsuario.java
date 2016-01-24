@@ -23,14 +23,5 @@ public void UserCreate(Usuario usuario)
     validation.UserCreation(usuario);
 }
 
-        public boolean userPasswordLength(String userPassword)
-        {
-            GeneralValidations val = new GeneralValidations();
-            val.matchPassw(userPassword, userPassword);
-            Pattern pat = Pattern.compile("(?=^.{8,}$)((?=.*\\d)|(?=.*\\W+))(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$");
-            Matcher mat = pat.matcher(userPassword);
-            return mat.find();
-        }
-
 }
 

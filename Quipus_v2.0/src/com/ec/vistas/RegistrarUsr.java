@@ -73,6 +73,12 @@ public class RegistrarUsr extends javax.swing.JFrame {
 
         jLabel1.setText("RUC");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,19 +149,6 @@ JOptionPane.showConfirmDialog(null, "Usuario agregado");
 this.setVisible(false);
 login log = new login();
 log.setVisible(true);
-// TODO add your handling code here:
-        /*usuario = new Usuario(
-            txtRuc.getText().toString(),
-            txtNickName.getText().toString(),
-            txtNombre.getText().toString(),
-            txtApellido.getText().toString(),
-            txtcontrasena.getText().toString(),
-            Double.parseDouble(txtSalario.getText().toString()),
-            txtCorreo.getText().toString(),
-            txtPregunta.getText().toString(),
-            txtRespuesta.getText().toString());
-
-        servicioUsuario.Crear(usuario);*/
         
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -172,6 +165,10 @@ log.setVisible(true);
         login log = new login();
         log.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     /**
      * @param args the command line arguments

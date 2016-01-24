@@ -13,10 +13,10 @@ import javax.persistence.Persistence;
  *
  * @author Cchristico
  */
-public class RestarPaswUser {
-    public void RestartPassw(){
-        
-}
+public class UserLogin {
+    
+    
+    
     /*private Boolean validUser(Usuario usuario){
         EntityManagerFactory conexion = Persistence.createEntityManagerFactory("QuipusPersistence");
         UsuarioJpaController usrController = new UsuarioJpaController(conexion);

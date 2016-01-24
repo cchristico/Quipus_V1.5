@@ -8,6 +8,8 @@ package com.ec.vistas;
 /*import com.ec.vistas.Principal;
 import com.ec.vistas.Principal;
 import com.ec.vistas.Principal;*/
+import com.ec.entidades.Usuario;
+import com.ec.utilitarios.UserValidationIntegration;
 import com.ec.vistas.RegistrarUsr;
 import com.ec.vistas.RegistrarUsr;
 import com.ec.vistas.RegistrarUsr;
@@ -133,10 +135,17 @@ public class login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
+        Usuario usuario = new Usuario();
+        //    usr.setCedulaUsuario(txtRuc.getText());
+        usuario.setCedulaUsuario(txtContraseña.getText());
+        usuario.setNombreUsuario(txtNombreUsr.getText());
+        
+        
+        UserValidationIntegration usr = new UserValidationIntegration();
+        usr.UserExist(usuario);
         Principal Main = new Principal();
         Main.setVisible(true);
         Main.setLocationRelativeTo(this);
-    
         this.setVisible(false);
                 
     }                                           

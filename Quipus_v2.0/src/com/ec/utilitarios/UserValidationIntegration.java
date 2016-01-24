@@ -8,8 +8,12 @@ import com.ec.negocio.GeneralValidations;
 import com.ec.entidades.Usuario;
 import com.ec.negocio.*;
 import com.ec.servicios.UsuarioJpaController;
+import java.util.Collection;
+import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,6 +33,11 @@ public void UserCreation(Usuario usuario)
     }
 }
 
+public void Loging(Usuario usuario)
+{
+    
+}
+
 
 private boolean validFiedls(Usuario usuario)
 {
@@ -39,4 +48,16 @@ private boolean validFiedls(Usuario usuario)
     /*Registro repetido*/
     return !validation.ErrorMesgIsEmpy();                     
 }
+
+public boolean  UserExist(Usuario usuario)
+{
+        EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
+    EntityManager entityManager = emFac.createEntityManager();
+    Query query1 = entityManager.createQuery("Select u.idUsuario from Usuario u where u.cedulaUsuario = :usuarioCI");
+    query1.setParameter("usuarioCI", usuario.getCedulaUsuario());
+    int resutado = (int) query1.getSingleResult(); 
+    System.out.println("ID"+resutado);
+    return true;
+}
+
 }
