@@ -33,7 +33,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        cmbProveedor = new javax.swing.JComboBox<String>();
+        cmbProveedor = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -53,7 +53,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
@@ -65,7 +65,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         jInternalFrame2 = new javax.swing.JInternalFrame();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        cmbProveedor1 = new javax.swing.JComboBox<String>();
+        cmbProveedor1 = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -85,7 +85,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
@@ -96,7 +96,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         btnGuardar1 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        cmbProveedor2 = new javax.swing.JComboBox<String>();
+        cmbProveedor2 = new javax.swing.JComboBox<>();
         jLabel26 = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
         btnNuevoProveedor = new javax.swing.JButton();
@@ -104,7 +104,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         txtBuscar1 = new javax.swing.JTextField();
-        btnRubro = new javax.swing.JComboBox<String>();
+        btnRubro = new javax.swing.JComboBox<>();
         txtBuscar2 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -115,7 +115,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Proveedor:");
 
-        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +188,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Iva:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -373,7 +373,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Proveedor:");
 
-        cmbProveedor1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbProveedor1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -446,7 +446,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         jLabel24.setText("Iva:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnRegistrar1.setText("Registrar");
         btnRegistrar1.addActionListener(new java.awt.event.ActionListener() {
@@ -631,7 +631,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         jLabel25.setText("Proveedor:");
 
-        cmbProveedor2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "supermaxi", "fibeca", "kfc", "hierrofer" }));
+        cmbProveedor2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "supermaxi", "fibeca", "kfc", "hierrofer" }));
 
         jLabel26.setText("Buscar :");
 
@@ -684,7 +684,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
 
         txtBuscar1.setToolTipText("Ingrese el nombre o razón social del proveedor");
 
-        btnRubro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Comida", "Salud", "Vivienda", "Educación" }));
+        btnRubro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comida", "Salud", "Vivienda", "Educación" }));
 
         txtBuscar2.setToolTipText("Ingrese el nombre o razón social del proveedor");
 
@@ -738,8 +738,15 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ec/vistas/iconos/guardar.png"))); // NOI18N
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ec/vistas/iconos/salir.png"))); // NOI18N
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -747,6 +754,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ec/vistas/iconos/limpiar.png"))); // NOI18N
         jButton3.setText("Limpiar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -755,29 +763,26 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
-                        .addGap(70, 70, 70)
-                        .addComponent(jButton2)
-                        .addGap(55, 55, 55))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton2))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 220, Short.MAX_VALUE)
+                    .addGap(0, 234, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 219, Short.MAX_VALUE)))
+                    .addGap(0, 233, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 220, Short.MAX_VALUE)
+                    .addGap(0, 234, Short.MAX_VALUE)
                     .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 219, Short.MAX_VALUE)))
+                    .addGap(0, 233, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -786,22 +791,22 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton1))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 148, Short.MAX_VALUE)
+                    .addGap(0, 156, Short.MAX_VALUE)
                     .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 148, Short.MAX_VALUE)))
+                    .addGap(0, 157, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 148, Short.MAX_VALUE)
+                    .addGap(0, 156, Short.MAX_VALUE)
                     .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 148, Short.MAX_VALUE)))
+                    .addGap(0, 157, Short.MAX_VALUE)))
         );
 
         pack();
@@ -866,6 +871,10 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

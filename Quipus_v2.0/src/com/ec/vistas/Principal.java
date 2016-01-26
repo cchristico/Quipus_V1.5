@@ -35,7 +35,7 @@ public class Principal extends javax.swing.JFrame {
         
         Dashboards ObjDashboards = new Dashboards();
         desktopPane.add(ObjDashboards);
-        ObjDashboards.setBounds(650, 50, 600, 600);
+        ObjDashboards.setBounds(680, 80, 500, 500);
         ObjDashboards.show();
        
      /*   menuBar.setEnabled(activador);
