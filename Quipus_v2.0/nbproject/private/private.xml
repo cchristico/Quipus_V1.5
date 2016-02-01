@@ -5,16 +5,18 @@
         <group>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/Login.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaIngresos.java</file>
-            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/servicios/usuarios/UserLogin.java</file>
-            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/utilitarios/UserValidationIntegration.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/servicios/usuarios/ingresoUsuario.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/negocio/GeneralValidations.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/clientesrs/clienteRS.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListarAño.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaProveedor.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/servicios/usuarios/UserLogin.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/utilitarios/UserValidationIntegration.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/RegistrarUsr.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ConsultarUser.java</file>
-            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListarAño.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaEgresos.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/FacturaIngresos.java</file>
-            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaProveedor.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/META-INF/persistence.xml</file>
         </group>
     </open-files>
 </project-private>
