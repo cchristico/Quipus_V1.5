@@ -5,6 +5,7 @@
  */
 package com.ec.vistas;
 
+import com.ec.utilitarios.UsuarioLog;
 import static com.ec.vistas.FacturaIngresos.openFrameCount;
 import static com.ec.vistas.Principal.desktopPane;
 import java.awt.Dimension;
@@ -22,17 +23,19 @@ public class ListaIngresos extends javax.swing.JInternalFrame {
     static int openFrameCount = 0;
     static final int xOffset = 100, yOffset = 30;
     DefaultTableModel model = null;
-    
+    UsuarioLog usr;
 
     /**
      * Creates new form FacturaEgresos
      */
     public ListaIngresos(JInternalFrame ventana) {
+        
          super("Registrar Factura de Ingresos" + (++openFrameCount),
                 false, //resizable
                 true, //closable
                 true, //maximizable
                 false);//iconifiable
+         this.usr= usr;
         initComponents();
         
         this.addInternalFrameListener(new InternalFrameAdapter() {
@@ -178,7 +181,7 @@ public class ListaIngresos extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             // TODO add your handling code here:
-            VistaRegistrarIngreso objRegistroIngreso = new VistaRegistrarIngreso();
+            VistaRegistrarIngreso objRegistroIngreso = new VistaRegistrarIngreso(usr);
             desktopPane.add(objRegistroIngreso);
             Dimension desktopSize = desktopPane.getSize();
             Dimension FrameSize = objRegistroIngreso.getSize();

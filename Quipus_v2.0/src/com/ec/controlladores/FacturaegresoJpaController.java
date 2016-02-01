@@ -7,7 +7,6 @@ package com.ec.controlladores;
 
 import com.ec.controlladores.exceptions.IllegalOrphanException;
 import com.ec.controlladores.exceptions.NonexistentEntityException;
-import com.ec.controlladores.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -23,7 +22,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author david
+ * @author Cchristico
  */
 public class FacturaegresoJpaController implements Serializable {
 
@@ -36,7 +35,7 @@ public class FacturaegresoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Facturaegreso facturaegreso) throws IllegalOrphanException, PreexistingEntityException, Exception {
+    public void create(Facturaegreso facturaegreso) throws IllegalOrphanException {
         List<String> illegalOrphanMessages = null;
         Factura facturaOrphanCheck = facturaegreso.getFactura();
         if (facturaOrphanCheck != null) {
@@ -75,11 +74,6 @@ public class FacturaegresoJpaController implements Serializable {
                 idrubroalcanzado = em.merge(idrubroalcanzado);
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findFacturaegreso(facturaegreso.getIdfactura()) != null) {
-                throw new PreexistingEntityException("Facturaegreso " + facturaegreso + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

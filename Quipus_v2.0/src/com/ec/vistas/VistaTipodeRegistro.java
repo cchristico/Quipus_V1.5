@@ -9,12 +9,18 @@ package com.ec.vistas;
  *
  * @author Toshiba
  */
+import com.ec.utilitarios.UsuarioLog;
 import java.awt.Dimension;
 import static com.ec.vistas.Principal.desktopPane;
 import java.beans.PropertyVetoException;
 import javax.swing.JInternalFrame;
 public class VistaTipodeRegistro extends javax.swing.JInternalFrame {
 
+    UsuarioLog usr;
+    public void setUsr(UsuarioLog usr)
+    {
+        this.usr=usr;
+    }
     /**
      * Creates new form VistoTipodeRegistro
      */

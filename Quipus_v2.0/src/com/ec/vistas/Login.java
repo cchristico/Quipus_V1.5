@@ -7,20 +7,25 @@ package com.ec.vistas;
 
 import com.ec.entidades.Usuario;
 import com.ec.utilitarios.UserValidationIntegration;
+import com.ec.utilitarios.UsuarioLog;
+import com.ec.vistas.ListaIngresos;
 
 /**
  *
  * @author Cchristico
  */
 public class Login extends javax.swing.JFrame {
+Usuario usuario = new Usuario();
 
     /**
      * Creates new form LoginUser
      */
     public Login() {
+        this.usuario = usuario;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
     }
 
     /**
@@ -159,13 +164,13 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-         Usuario usuario = new Usuario();
         usuario.setCedula(txtContraseña.getText());
         usuario.setNombresapellidos(txtNombreUsr.getText());
         
         UserValidationIntegration usr = new UserValidationIntegration();
+        
         usr.Loging(usuario);
-        System.out.println("ID="+usuario.getIdUsu()+"\nNombre="+usuario.getNombresapellidos()+"\n Cedula="+usuario.getCedula());
+        //System.out.println("ID="+usuario.getIdUsu()+"\nNombre="+usuario.getNombresapellidos()+ "\n Cedula="+usuario.getCedula());
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed

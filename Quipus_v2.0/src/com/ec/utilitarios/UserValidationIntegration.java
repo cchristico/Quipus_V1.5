@@ -13,12 +13,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import com.ec.utilitarios.UsuarioLog;
+import com.ec.vistas.ListaIngresos;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author Cchristico
  */
 public class UserValidationIntegration {
+    
+    
 public void UserCreation(Usuario usuario)
 {
     if(validFiedls(usuario))
@@ -26,6 +31,7 @@ public void UserCreation(Usuario usuario)
         EntityManagerFactory conexion = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
         UsuarioJpaController usrController = new UsuarioJpaController(conexion);
         usrController.create(usuario);
+//    usrController.create(usuario);
         //usrController.create(usuario);
         //JOptionPane.showMessageDialog(null, "Usuario Registrado, ya puedes ingresar!");
     }
@@ -35,7 +41,14 @@ public void Loging(Usuario usuario)
 {
     if(logUser(usuario))
     {
+        UsuarioLog usr = new UsuarioLog();
+        usr.setCedulaUsr(usuario.nombresapellidos);
+        usr.setCedulaUsr(usuario.cedula);
+        usr.setIDUsr(usuario.idUsu);
+        System.out.println(usr.getCedulaUsr());
+        //Usuario usr = new Usuario();
         Principal main = new Principal();
+        main.setUsr(usr);
         main.setVisible(true);
         Login log = new Login();
         log.setVisible(false);
@@ -51,8 +64,8 @@ private boolean validFiedls(Usuario usuario)
 {
     
     GeneralValidations validation = new GeneralValidations();
-    validation.CIValidation(usuario.getCedulaUsuario(), "C.I.");
-    validation.validteEmptyField(usuario.getNombreUsuario(), "Nombres y Apellidos");
+    validation.CIValidation(usuario.getCedula(), "C.I.");
+    validation.validteEmptyField(usuario.getNombresapellidos(), "Nombres y Apellidos");
     validation.userDuplication(usuario);
     /*Registro repetido*/
     return !validation.ErrorMesgIsEmpy();                     

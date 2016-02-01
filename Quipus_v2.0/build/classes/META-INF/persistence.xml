@@ -7,6 +7,7 @@
     <class>com.ec.entidades.Rubro</class>
     <class>com.ec.entidades.Facturaingreso</class>
     <class>com.ec.entidades.Facturaegreso</class>
+    <class>com.ec.entidades.UsuarioLogeado</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/quipus?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

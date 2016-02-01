@@ -331,12 +331,12 @@ public class GeneralValidations {
     try {
         EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
     EntityManager entityManager = emFac.createEntityManager();
-    Query query1 = entityManager.createQuery("Select u.idUsuario from Usuario u where u.cedulaUsuario = :usuarioCI and u.nombreUsuario= :usuarioName");
+    Query query1 = entityManager.createQuery("Select u.idUsu from Usuario u where u.cedula = :usuarioCI and u.nombresapellidos = :usuarioName");
     query1.setParameter("usuarioCI", usuario.getCedula())
             .setParameter("usuarioName", usuario.getNombresapellidos());
-    int resutado = (int) query1.getSingleResult(); 
-    System.out.println("ID"+resutado);
-    usuario.setIdUsu(resutado);
+    int idUser = (int) query1.getSingleResult(); 
+    System.out.println("ID"+idUser);
+    usuario.setIdUsu(idUser);
     } catch (Exception e) {
         errorMessage+="El usuario no se encuentra registrado \n Verifique la información";
     }

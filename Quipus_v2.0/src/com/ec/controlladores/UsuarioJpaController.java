@@ -6,7 +6,6 @@
 package com.ec.controlladores;
 
 import com.ec.controlladores.exceptions.NonexistentEntityException;
-import com.ec.controlladores.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -22,7 +21,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author david
+ * @author Cchristico
  */
 public class UsuarioJpaController implements Serializable {
 
@@ -35,7 +34,7 @@ public class UsuarioJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Usuario usuario) throws PreexistingEntityException, Exception {
+    public void create(Usuario usuario) {
         if (usuario.getFacturaCollection() == null) {
             usuario.setFacturaCollection(new ArrayList<Factura>());
         }
@@ -60,11 +59,6 @@ public class UsuarioJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findUsuario(usuario.getIdUsu()) != null) {
-                throw new PreexistingEntityException("Usuario " + usuario + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

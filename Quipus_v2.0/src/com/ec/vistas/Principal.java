@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.ec.vistas;
+import com.ec.utilitarios.UsuarioLog;
 import java.awt.Dimension;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.JInternalFrame;
@@ -11,22 +12,16 @@ public class Principal extends javax.swing.JFrame {
 
     private boolean activador=false;
 
-    
-    /**
-     * Creates new form Principal
-     */
-    //Ventana1 VistaTipodeRegistro;
-    public Principal() {
-       
-        initComponents();
-        this.setSize(getMaximumSize().width, getMaximumSize().height);
+    private UsuarioLog usr;
+   
+    public void setUsr(UsuarioLog usr){
         
-        this.setLocationRelativeTo(this);
         VistaTipodeRegistro ObjTipoRegistro =new VistaTipodeRegistro();
+        ObjTipoRegistro.setUsr(usr);
+        System.out.println(usr.IDUsr);
         desktopPane.add(ObjTipoRegistro);
         ObjTipoRegistro.setBounds(40, 200, 450, 200);
         ObjTipoRegistro.show();
-        
         
         /*Dashboard ObjDashboard = new Dashboard();
         desktopPane.add(ObjDashboard);
@@ -38,7 +33,21 @@ public class Principal extends javax.swing.JFrame {
         ObjDashboards.setBounds(680, 80, 500, 500);
         ObjDashboards.show();
        
-     /*   menuBar.setEnabled(activador);
+
+    }
+    
+    /**
+     * Creates new form Principal
+     */
+    //Ventana1 VistaTipodeRegistro;
+    
+    public Principal() {
+       
+        initComponents();
+        this.setSize(getMaximumSize().width, getMaximumSize().height);
+        
+        this.setLocationRelativeTo(this);
+             /*   menuBar.setEnabled(activador);
         menuBar.setVisible(activador);
         
         Login log = new Login();
@@ -182,12 +191,8 @@ public class Principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Principal principal = new Principal();
-
                 principal.setExtendedState(MAXIMIZED_BOTH);
-                principal.setVisible(true);
-                
-                
-                
+                principal.setVisible(true);        
             }
         });
     }

@@ -5,18 +5,26 @@
  */
 package com.ec.vistas;
 
+import com.ec.entidades.Usuario;
+import com.ec.utilitarios.UsuarioLog;
+
 /**
  *
  * @author david
  */
 public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
 
+        UsuarioLog usr;
+
     /**
      * Creates new form VistaRegistrarIngreso
      */
-    public VistaRegistrarIngreso() {
+    public VistaRegistrarIngreso(UsuarioLog usr) {               
         initComponents();
+        this.usr = usr;
+//        txtNombreUsr.setText(usr.getNombreUsr());
         this.setVisible(false);
+        
     }
 
     /**
@@ -39,7 +47,7 @@ public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
         txtBuscar2 = new javax.swing.JTextField();
         btnRubro = new javax.swing.JComboBox<>();
         jLabel32 = new javax.swing.JLabel();
-        txtBuscar4 = new javax.swing.JTextField();
+        txtNombreUsr = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -64,9 +72,8 @@ public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
 
         jLabel32.setText("Usuario:");
 
-        txtBuscar4.setText("Juanito");
-        txtBuscar4.setToolTipText("Ingrese el nombre o razón social del proveedor");
-        txtBuscar4.setEnabled(false);
+        txtNombreUsr.setToolTipText("Ingrese el nombre o razón social del proveedor");
+        txtNombreUsr.setEnabled(false);
 
         jButton1.setText("Guardar");
 
@@ -104,7 +111,7 @@ public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
                     .addComponent(txtBuscar2)
                     .addComponent(txtBuscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRubro, 0, 167, Short.MAX_VALUE)
-                    .addComponent(txtBuscar4)
+                    .addComponent(txtNombreUsr)
                     .addComponent(jDateChooser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -121,7 +128,7 @@ public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBuscar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreUsr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel32))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,6 +179,6 @@ public class VistaRegistrarIngreso extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtBuscar1;
     private javax.swing.JTextField txtBuscar2;
     private javax.swing.JTextField txtBuscar3;
-    private javax.swing.JTextField txtBuscar4;
+    private javax.swing.JTextField txtNombreUsr;
     // End of variables declaration//GEN-END:variables
 }
