@@ -19,7 +19,7 @@ import javax.persistence.Query;
  * @author Cchristico
  */
 public class UserValidationIntegration {
-public void UserCreation(Usuario usuario)
+public void UserCreation(Usuario usuario) throws Exception
 {
     if(validFiedls(usuario))
     {
@@ -51,8 +51,8 @@ private boolean validFiedls(Usuario usuario)
 {
     
     GeneralValidations validation = new GeneralValidations();
-    validation.CIValidation(usuario.getCedulaUsuario(), "C.I.");
-    validation.validteEmptyField(usuario.getNombreUsuario(), "Nombres y Apellidos");
+    validation.CIValidation(usuario.getCedula(), "C.I.");
+    validation.validteEmptyField(usuario.getNombresapellidos(), "Nombres y Apellidos");
     validation.userDuplication(usuario);
     /*Registro repetido*/
     return !validation.ErrorMesgIsEmpy();                     
