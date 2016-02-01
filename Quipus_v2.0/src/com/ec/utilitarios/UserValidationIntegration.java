@@ -22,13 +22,8 @@ import javax.swing.JInternalFrame;
  * @author Cchristico
  */
 public class UserValidationIntegration {
-<<<<<<< HEAD
-    
-    
-public void UserCreation(Usuario usuario)
-=======
+
 public void UserCreation(Usuario usuario) throws Exception
->>>>>>> 76ef2685bffefd4bf11c4f232a4318f6a9138b89
 {
     if(validFiedls(usuario))
     {

@@ -16,6 +16,7 @@ public class Principal extends javax.swing.JFrame {
    
     public void setUsr(UsuarioLog usr){
         
+        this.usr=usr;
         VistaTipodeRegistro ObjTipoRegistro =new VistaTipodeRegistro();
         ObjTipoRegistro.setUsr(usr);
         System.out.println(usr.IDUsr);
