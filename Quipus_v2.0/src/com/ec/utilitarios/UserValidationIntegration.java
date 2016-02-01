@@ -6,7 +6,7 @@
 package com.ec.utilitarios;
 import com.ec.negocio.GeneralValidations;
 import com.ec.entidades.Usuario;
-import com.ec.servicios.UsuarioJpaController;
+import com.ec.controlladores.UsuarioJpaController;
 import com.ec.vistas.Login;
 import com.ec.vistas.Principal;
 import javax.persistence.EntityManager;

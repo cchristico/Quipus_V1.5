@@ -160,12 +160,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         
          Usuario usuario = new Usuario();
-        usuario.setCedulaUsuario(txtContraseña.getText());
-        usuario.setNombreUsuario(txtNombreUsr.getText());
+        usuario.setCedula(txtContraseña.getText());
+        usuario.setNombresapellidos(txtNombreUsr.getText());
         
         UserValidationIntegration usr = new UserValidationIntegration();
         usr.Loging(usuario);
-        System.out.println("ID="+usuario.getIdUsuario()+"\nNombre="+usuario.getNombreUsuario()+"\n Cedula="+usuario.getCedulaUsuario());
+        System.out.println("ID="+usuario.getIdUsu()+"\nNombre="+usuario.getNombresapellidos()+"\n Cedula="+usuario.getCedula());
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed

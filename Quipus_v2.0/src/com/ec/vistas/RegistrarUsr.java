@@ -141,8 +141,8 @@ public String confPasww = "";
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
 
 Usuario usr = new Usuario();
-    usr.setCedulaUsuario(txtRuc.getText());
-    usr.setNombreUsuario(txtNombre.getText()+" "+txtApellido.getText());
+    usr.setCedula(txtRuc.getText()); 
+    usr.setNombresapellidos(txtNombre.getText()+" "+txtApellido.getText());
     ingresoUsuario userAdd = new ingresoUsuario();
     userAdd.UserCreate(usr);
 

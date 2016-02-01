@@ -332,11 +332,11 @@ public class GeneralValidations {
         EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
     EntityManager entityManager = emFac.createEntityManager();
     Query query1 = entityManager.createQuery("Select u.idUsuario from Usuario u where u.cedulaUsuario = :usuarioCI and u.nombreUsuario= :usuarioName");
-    query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
-            .setParameter("usuarioName", usuario.getNombreUsuario());
+    query1.setParameter("usuarioCI", usuario.getCedula())
+            .setParameter("usuarioName", usuario.getNombresapellidos());
     int resutado = (int) query1.getSingleResult(); 
     System.out.println("ID"+resutado);
-    usuario.setIdUsuario(resutado);
+    usuario.setIdUsu(resutado);
     } catch (Exception e) {
         errorMessage+="El usuario no se encuentra registrado \n Verifique la información";
     }
@@ -350,8 +350,8 @@ public class GeneralValidations {
                 EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
     EntityManager entityManager = emFac.createEntityManager();
     Query query1 = entityManager.createQuery("Select u from Usuario u where u.cedulaUsuario = :usuarioCI or u.nombreUsuario= :usuarioName");
-    query1.setParameter("usuarioCI", usuario.getCedulaUsuario())
-            .setParameter("usuarioName", usuario.getNombreUsuario());
+    query1.setParameter("usuarioCI", usuario.getCedula())
+            .setParameter("usuarioName", usuario.getNombresapellidos());
                 List<Usuario> list = query1.getResultList();
                 if(!list.isEmpty())
                 {

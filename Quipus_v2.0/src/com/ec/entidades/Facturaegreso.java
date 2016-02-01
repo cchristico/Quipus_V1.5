@@ -8,11 +8,8 @@ package com.ec.entidades;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,38 +26,39 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author david
  */
 @Entity
-@Table(name = "factura")
+@Table(name = "facturaegreso")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
-    @NamedQuery(name = "Factura.findByIdfactura", query = "SELECT f FROM Factura f WHERE f.idfactura = :idfactura"),
-    @NamedQuery(name = "Factura.findByFechafactura", query = "SELECT f FROM Factura f WHERE f.fechafactura = :fechafactura"),
-    @NamedQuery(name = "Factura.findByValorfactura", query = "SELECT f FROM Factura f WHERE f.valorfactura = :valorfactura")})
-public class Factura implements Serializable {
+    @NamedQuery(name = "Facturaegreso.findAll", query = "SELECT f FROM Facturaegreso f"),
+    @NamedQuery(name = "Facturaegreso.findByIdfactura", query = "SELECT f FROM Facturaegreso f WHERE f.idfactura = :idfactura"),
+    @NamedQuery(name = "Facturaegreso.findByIdUsu", query = "SELECT f FROM Facturaegreso f WHERE f.idUsu = :idUsu"),
+    @NamedQuery(name = "Facturaegreso.findByFechafactura", query = "SELECT f FROM Facturaegreso f WHERE f.fechafactura = :fechafactura"),
+    @NamedQuery(name = "Facturaegreso.findByValorfactura", query = "SELECT f FROM Facturaegreso f WHERE f.valorfactura = :valorfactura")})
+public class Facturaegreso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IDFACTURA")
     private Integer idfactura;
+    @Column(name = "ID_USU")
+    private Integer idUsu;
     @Column(name = "FECHAFACTURA")
     @Temporal(TemporalType.DATE)
     private Date fechafactura;
     @Column(name = "VALORFACTURA")
     private String valorfactura;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Facturaingreso facturaingreso;
-    @JoinColumn(name = "ID_USU", referencedColumnName = "ID_USU")
+    @JoinColumn(name = "IDFACTURA", referencedColumnName = "IDFACTURA", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Factura factura;
+    @JoinColumn(name = "IDRUBROALCANZADO", referencedColumnName = "IDRUBROALCANZADO")
     @ManyToOne
-    private Usuario idUsu;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "factura")
-    private Facturaegreso facturaegreso;
+    private Rubro idrubroalcanzado;
 
-    public Factura() {
+    public Facturaegreso() {
     }
 
-    public Factura(Integer idfactura) {
+    public Facturaegreso(Integer idfactura) {
         this.idfactura = idfactura;
     }
 
@@ -70,6 +68,14 @@ public class Factura implements Serializable {
 
     public void setIdfactura(Integer idfactura) {
         this.idfactura = idfactura;
+    }
+
+    public Integer getIdUsu() {
+        return idUsu;
+    }
+
+    public void setIdUsu(Integer idUsu) {
+        this.idUsu = idUsu;
     }
 
     public Date getFechafactura() {
@@ -88,28 +94,20 @@ public class Factura implements Serializable {
         this.valorfactura = valorfactura;
     }
 
-    public Facturaingreso getFacturaingreso() {
-        return facturaingreso;
+    public Factura getFactura() {
+        return factura;
     }
 
-    public void setFacturaingreso(Facturaingreso facturaingreso) {
-        this.facturaingreso = facturaingreso;
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
 
-    public Usuario getIdUsu() {
-        return idUsu;
+    public Rubro getIdrubroalcanzado() {
+        return idrubroalcanzado;
     }
 
-    public void setIdUsu(Usuario idUsu) {
-        this.idUsu = idUsu;
-    }
-
-    public Facturaegreso getFacturaegreso() {
-        return facturaegreso;
-    }
-
-    public void setFacturaegreso(Facturaegreso facturaegreso) {
-        this.facturaegreso = facturaegreso;
+    public void setIdrubroalcanzado(Rubro idrubroalcanzado) {
+        this.idrubroalcanzado = idrubroalcanzado;
     }
 
     @Override
@@ -122,10 +120,10 @@ public class Factura implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Factura)) {
+        if (!(object instanceof Facturaegreso)) {
             return false;
         }
-        Factura other = (Factura) object;
+        Facturaegreso other = (Facturaegreso) object;
         if ((this.idfactura == null && other.idfactura != null) || (this.idfactura != null && !this.idfactura.equals(other.idfactura))) {
             return false;
         }
@@ -134,7 +132,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ec.entidades.Factura[ idfactura=" + idfactura + " ]";
+        return "com.ec.entidades.Facturaegreso[ idfactura=" + idfactura + " ]";
     }
     
 }
