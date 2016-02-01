@@ -49,11 +49,15 @@ public class Dashboards extends javax.swing.JPanel {
         REducación = new javax.swing.JPanel();
         btnGraficar = new javax.swing.JButton();
 
+        RAlimentación.setPreferredSize(new java.awt.Dimension(480, 563));
+
+        REducación.setPreferredSize(new java.awt.Dimension(480, 563));
+
         javax.swing.GroupLayout REducaciónLayout = new javax.swing.GroupLayout(REducación);
         REducación.setLayout(REducaciónLayout);
         REducaciónLayout.setHorizontalGroup(
             REducaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
         REducaciónLayout.setVerticalGroup(
             REducaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,13 +84,13 @@ public class Dashboards extends javax.swing.JPanel {
                     .addGroup(RAlimentaciónLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(REducación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RAlimentaciónLayout.setVerticalGroup(
             RAlimentaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RAlimentaciónLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(REducación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(REducación, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGraficar)
                 .addGap(90, 90, 90))
@@ -98,9 +102,11 @@ public class Dashboards extends javax.swing.JPanel {
         Rubros.setLayout(RubrosLayout);
         RubrosLayout.setHorizontalGroup(
             RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addGap(0, 490, Short.MAX_VALUE)
             .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(RAlimentación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(RubrosLayout.createSequentialGroup()
+                    .addComponent(RAlimentación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 10, Short.MAX_VALUE)))
         );
         RubrosLayout.setVerticalGroup(
             RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +122,9 @@ public class Dashboards extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Rubros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
