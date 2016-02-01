@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListRubroTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="RubroListForm">
+                <p:panel header="#{bundle.ListRubroTitle}">
+                    <p:dataTable id="datalist" value="#{rubroController.items}" var="item"
+                                 selectionMode="single" selection="#{rubroController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idrubroalcanzado}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRubroTitle_idrubroalcanzado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idrubroalcanzado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRubroTitle_nombrerubro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombrerubro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRubroTitle_valoractual}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valoractual}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRubroTitle_codigorubro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigorubro}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListRubroTitle_valorreferencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valorreferencia}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{rubroController.prepareCreate}" update=":RubroCreateForm" oncomplete="PF('RubroCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":RubroViewForm" oncomplete="PF('RubroViewDialog').show()" disabled="#{empty rubroController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":RubroEditForm" oncomplete="PF('RubroEditDialog').show()" disabled="#{empty rubroController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{rubroController.destroy}" update=":growl,datalist" disabled="#{empty rubroController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>
