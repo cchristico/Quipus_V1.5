@@ -44,66 +44,24 @@ public class Dashboards extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Vivienda = new javax.swing.JRadioButton();
-        Educación = new javax.swing.JRadioButton();
-        Alimentación = new javax.swing.JRadioButton();
-        Vestimenta = new javax.swing.JRadioButton();
-        Salud = new javax.swing.JRadioButton();
         Rubros = new javax.swing.JLayeredPane();
         RAlimentación = new javax.swing.JPanel();
         REducación = new javax.swing.JPanel();
         btnGraficar = new javax.swing.JButton();
-        RVestimenta = new javax.swing.JPanel();
-        RSalud = new javax.swing.JPanel();
-        RVivienda = new javax.swing.JPanel();
-
-        Vivienda.setText("Vivienda");
-        Vivienda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViviendaActionPerformed(evt);
-            }
-        });
-
-        Educación.setText("Educación");
-        Educación.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EducaciónActionPerformed(evt);
-            }
-        });
-
-        Alimentación.setText("Alimentación");
-        Alimentación.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlimentaciónActionPerformed(evt);
-            }
-        });
-
-        Vestimenta.setText("Vestimenta");
-        Vestimenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VestimentaActionPerformed(evt);
-            }
-        });
-
-        Salud.setText("Salud");
-        Salud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaludActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout REducaciónLayout = new javax.swing.GroupLayout(REducación);
         REducación.setLayout(REducaciónLayout);
         REducaciónLayout.setHorizontalGroup(
             REducaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 477, Short.MAX_VALUE)
         );
         REducaciónLayout.setVerticalGroup(
             REducaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 405, Short.MAX_VALUE)
         );
 
-        btnGraficar.setText("Graficar");
+        btnGraficar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ec/vistas/iconos/consultar.png"))); // NOI18N
+        btnGraficar.setText("Consultar");
         btnGraficar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGraficarActionPerformed(evt);
@@ -115,208 +73,82 @@ public class Dashboards extends javax.swing.JPanel {
         RAlimentaciónLayout.setHorizontalGroup(
             RAlimentaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RAlimentaciónLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(RAlimentaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RAlimentaciónLayout.createSequentialGroup()
-                        .addComponent(REducación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RAlimentaciónLayout.createSequentialGroup()
-                        .addComponent(btnGraficar)
-                        .addGap(235, 235, 235))))
+                    .addGroup(RAlimentaciónLayout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(btnGraficar))
+                    .addGroup(RAlimentaciónLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(REducación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         RAlimentaciónLayout.setVerticalGroup(
             RAlimentaciónLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RAlimentaciónLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(REducación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(btnGraficar)
-                .addGap(75, 75, 75))
+                .addGap(90, 90, 90))
         );
 
-        javax.swing.GroupLayout RVestimentaLayout = new javax.swing.GroupLayout(RVestimenta);
-        RVestimenta.setLayout(RVestimentaLayout);
-        RVestimentaLayout.setHorizontalGroup(
-            RVestimentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
-        );
-        RVestimentaLayout.setVerticalGroup(
-            RVestimentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout RSaludLayout = new javax.swing.GroupLayout(RSalud);
-        RSalud.setLayout(RSaludLayout);
-        RSaludLayout.setHorizontalGroup(
-            RSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 505, Short.MAX_VALUE)
-        );
-        RSaludLayout.setVerticalGroup(
-            RSaludLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 468, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout RViviendaLayout = new javax.swing.GroupLayout(RVivienda);
-        RVivienda.setLayout(RViviendaLayout);
-        RViviendaLayout.setHorizontalGroup(
-            RViviendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
-        );
-        RViviendaLayout.setVerticalGroup(
-            RViviendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
-        );
+        Rubros.setLayer(RAlimentación, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout RubrosLayout = new javax.swing.GroupLayout(Rubros);
         Rubros.setLayout(RubrosLayout);
         RubrosLayout.setHorizontalGroup(
             RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
             .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(RubrosLayout.createSequentialGroup()
-                    .addComponent(RAlimentación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 11, Short.MAX_VALUE)))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(RubrosLayout.createSequentialGroup()
-                    .addComponent(RVestimenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 40, Short.MAX_VALUE)))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RubrosLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(RSalud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(41, 41, 41)))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(RubrosLayout.createSequentialGroup()
-                    .addGap(7, 7, 7)
-                    .addComponent(RVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(42, Short.MAX_VALUE)))
+                .addComponent(RAlimentación, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RubrosLayout.setVerticalGroup(
             RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 610, Short.MAX_VALUE)
+            .addGap(0, 626, Short.MAX_VALUE)
             .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(RubrosLayout.createSequentialGroup()
                     .addComponent(RAlimentación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 63, Short.MAX_VALUE)))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(RVestimenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(RSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(RubrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(RubrosLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(RVivienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
         );
-        Rubros.setLayer(RAlimentación, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Rubros.setLayer(RVestimenta, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Rubros.setLayer(RSalud, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Rubros.setLayer(RVivienda, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(Vivienda)
-                        .addGap(18, 18, 18)
-                        .addComponent(Educación)
-                        .addGap(29, 29, 29)
-                        .addComponent(Alimentación)
-                        .addGap(30, 30, 30)
-                        .addComponent(Vestimenta)
-                        .addGap(45, 45, 45)
-                        .addComponent(Salud))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(Rubros, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(Rubros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Vivienda)
-                    .addComponent(Educación)
-                    .addComponent(Alimentación)
-                    .addComponent(Vestimenta)
-                    .addComponent(Salud))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Rubros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(Rubros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaludActionPerformed
-
-        Vivienda.setSelected(false);
-        Vestimenta.setSelected(false);
-        Educación.setSelected(false);
-        Alimentación.setSelected(false);
-    }//GEN-LAST:event_SaludActionPerformed
-
-    private void ViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViviendaActionPerformed
-
-        Salud.setSelected(false);
-        Vestimenta.setSelected(false);
-        Educación.setSelected(false);
-        Alimentación.setSelected(false);
-    }//GEN-LAST:event_ViviendaActionPerformed
-
-    private void EducaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EducaciónActionPerformed
-
-        Vivienda.setSelected(false);
-        Vestimenta.setSelected(false);
-        Salud.setSelected(false);
-        Alimentación.setSelected(false);
-    }//GEN-LAST:event_EducaciónActionPerformed
-
-    private void AlimentaciónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlimentaciónActionPerformed
-
-        Vivienda.setSelected(false);
-        Vestimenta.setSelected(false);
-        Educación.setSelected(false);
-        Salud.setSelected(false);
-    }//GEN-LAST:event_AlimentaciónActionPerformed
-
-    private void VestimentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VestimentaActionPerformed
-
-        Vivienda.setSelected(false);
-        Salud.setSelected(false);
-        Educación.setSelected(false);
-        Alimentación.setSelected(false);
-    }//GEN-LAST:event_VestimentaActionPerformed
-
     private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
-        //CONSTRUTES LA INFORMACION PARA PRESENTAR NO ES NECESARIO CLASIFICAR 
+        //CONSTRUTES LA INFORMACION PARA PRESENTAR NO ES NECESARIO CLASIFICAR
         //PRIMER PARAMETRO ES LA CANTIDAD
         //EL SEGUNDO EL GRUPO
         //EL TERCERO LA ETIQUETA
+        int v = 123;
         DefaultCategoryDataset defaultcategorydataset = new DefaultCategoryDataset();
-        defaultcategorydataset.addValue(23192D, "S1", "GNU General Public Licence");
-        defaultcategorydataset.addValue(3157D, "S1", "GNU Lesser General Public Licence");
-        defaultcategorydataset.addValue(1506D, "S1", "BSD Licence (Original)");
-        defaultcategorydataset.addValue(1283D, "S1", "BSD Licence (Revised)");
-        defaultcategorydataset.addValue(738D, "S1", "MIT/X Consortium Licence");
-        defaultcategorydataset.addValue(630D, "S1", "Artistic Licence");
-        defaultcategorydataset.addValue(585D, "S1", "Public Domain");
-        defaultcategorydataset.addValue(349D, "S1", "Apache Licence 2.0");
-        defaultcategorydataset.addValue(317D, "S1", "Apache Licence");
-        defaultcategorydataset.addValue(309D, "S1", "Mozilla Public Licence");
-        defaultcategorydataset.addValue(918D, "S1", "Other");
+        defaultcategorydataset.addValue(v, "S1", "Alimentación");
+        defaultcategorydataset.addValue(3157D, "S1", "Educación");
+        defaultcategorydataset.addValue(1506D, "S1", "Salud");
+        defaultcategorydataset.addValue(1283D, "S1", "Vestimenta");
+        defaultcategorydataset.addValue(738D, "S1", "Vivienda");
 
         //creas el objeto freechart
         //TITULO
         //EJE Y
         //EJE X
-        JFreeChart jfreechart = ChartFactory.createBarChart("Titulo", "Licence", "Project Count", defaultcategorydataset, PlotOrientation.HORIZONTAL, false, true, false);
-//		TextTitle texttitle = new TextTitle("Source: Freshmeat (http://www.freshmeat.net/)", new Font("Dialog", 0, 10));
-//		texttitle.setPosition(RectangleEdge.BOTTOM);
-//		jfreechart.addSubtitle(texttitle);
+        JFreeChart jfreechart = ChartFactory.createBarChart("Titulo", "Rubro", "Consumo", defaultcategorydataset, PlotOrientation.HORIZONTAL, false, true, false);
+        //		TextTitle texttitle = new TextTitle("Source: Freshmeat (http://www.freshmeat.net/)", new Font("Dialog", 0, 10));
+        //		texttitle.setPosition(RectangleEdge.BOTTOM);
+        //		jfreechart.addSubtitle(texttitle);
         ChartUtilities.applyCurrentTheme(jfreechart);
         CategoryPlot categoryplot = (CategoryPlot) jfreechart.getPlot();
         categoryplot.setDomainGridlinesVisible(true);
@@ -329,9 +161,9 @@ public class Dashboards extends javax.swing.JPanel {
         barrenderer.setBaseToolTipGenerator(standardcategorytooltipgenerator);
         GradientPaint gradientpaint = new GradientPaint(0.0F, 0.0F, Color.blue, 0.0F, 0.0F, new Color(0, 0, 64));
         barrenderer.setSeriesPaint(0, gradientpaint);
-      //PINTA EN EL JPANEL QUE TENGAS
+        //PINTA EN EL JPANEL QUE TENGAS
         ChartPanel myChart = new ChartPanel(jfreechart);
-//        myChart.setMouseWheelEnabled(true);
+        //        myChart.setMouseWheelEnabled(true);
         REducación.setLayout(new java.awt.BorderLayout());
         REducación.add(myChart, BorderLayout.CENTER);
         REducación.validate();
@@ -339,17 +171,9 @@ public class Dashboards extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Alimentación;
-    private javax.swing.JRadioButton Educación;
     private javax.swing.JPanel RAlimentación;
     private javax.swing.JPanel REducación;
-    private javax.swing.JPanel RSalud;
-    private javax.swing.JPanel RVestimenta;
-    private javax.swing.JPanel RVivienda;
     private javax.swing.JLayeredPane Rubros;
-    private javax.swing.JRadioButton Salud;
-    private javax.swing.JRadioButton Vestimenta;
-    private javax.swing.JRadioButton Vivienda;
     private javax.swing.JButton btnGraficar;
     // End of variables declaration//GEN-END:variables
 }

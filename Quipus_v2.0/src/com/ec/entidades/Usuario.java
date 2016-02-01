@@ -10,8 +10,6 @@ import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,71 +20,67 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Cchristico
+ * @author david
  */
 @Entity
 @Table(name = "usuario")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByNombreUsuario", query = "SELECT u FROM Usuario u WHERE u.nombreUsuario = :nombreUsuario"),
-    @NamedQuery(name = "Usuario.findByCedulaUsuario", query = "SELECT u FROM Usuario u WHERE u.cedulaUsuario = :cedulaUsuario"),
-    @NamedQuery(name = "Usuario.findByCedulaUsuarioAndName", query = "SELECT u.idUsuario FROM Usuario u WHERE u.cedulaUsuario = :cedulaUsuario "
-            + "and u.nombreUsuario= :nombreUsuario")
-})  
+    @NamedQuery(name = "Usuario.findByIdUsu", query = "SELECT u FROM Usuario u WHERE u.idUsu = :idUsu"),
+    @NamedQuery(name = "Usuario.findByNombresapellidos", query = "SELECT u FROM Usuario u WHERE u.nombresapellidos = :nombresapellidos"),
+    @NamedQuery(name = "Usuario.findByCedula", query = "SELECT u FROM Usuario u WHERE u.cedula = :cedula")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ID_USUARIO")
-    private Integer idUsuario;
+    @Column(name = "ID_USU")
+    private Integer idUsu;
     @Basic(optional = false)
-    @Column(name = "NOMBRE_USUARIO")
-    private String nombreUsuario;
+    @Column(name = "NOMBRESAPELLIDOS")
+    private String nombresapellidos;
     @Basic(optional = false)
-    @Column(name = "CEDULA_USUARIO")
-    private String cedulaUsuario;
-    @OneToMany(mappedBy = "idUsuario")
+    @Column(name = "CEDULA")
+    private String cedula;
+    @OneToMany(mappedBy = "idUsu")
     private Collection<Factura> facturaCollection;
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public Usuario(Integer idUsu) {
+        this.idUsu = idUsu;
     }
 
-    public Usuario(Integer idUsuario, String nombreUsuario, String cedulaUsuario) {
-        this.idUsuario = idUsuario;
-        this.nombreUsuario = nombreUsuario;
-        this.cedulaUsuario = cedulaUsuario;
+    public Usuario(Integer idUsu, String nombresapellidos, String cedula) {
+        this.idUsu = idUsu;
+        this.nombresapellidos = nombresapellidos;
+        this.cedula = cedula;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getIdUsu() {
+        return idUsu;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdUsu(Integer idUsu) {
+        this.idUsu = idUsu;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public String getNombresapellidos() {
+        return nombresapellidos;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNombresapellidos(String nombresapellidos) {
+        this.nombresapellidos = nombresapellidos;
     }
 
-    public String getCedulaUsuario() {
-        return cedulaUsuario;
+    public String getCedula() {
+        return cedula;
     }
 
-    public void setCedulaUsuario(String cedulaUsuario) {
-        this.cedulaUsuario = cedulaUsuario;
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     @XmlTransient
@@ -101,7 +95,7 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
+        hash += (idUsu != null ? idUsu.hashCode() : 0);
         return hash;
     }
 
@@ -112,7 +106,7 @@ public class Usuario implements Serializable {
             return false;
         }
         Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
+        if ((this.idUsu == null && other.idUsu != null) || (this.idUsu != null && !this.idUsu.equals(other.idUsu))) {
             return false;
         }
         return true;
@@ -120,7 +114,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ec.entidades.Usuario[ idUsuario=" + idUsuario + " ]";
+        return "com.ec.entidades.Usuario[ idUsu=" + idUsu + " ]";
     }
     
 }

@@ -35,6 +35,7 @@ public class ListarAño extends javax.swing.JInternalFrame {
 
         cmbAñoActivo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione Año", "2014", "2015" }));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ec/vistas/iconos/aceptar.png"))); // NOI18N
         jButton1.setText("Aceptar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -60,9 +61,9 @@ public class ListarAño extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cmbAñoActivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(21, 21, 21))
         );
 
         pack();
