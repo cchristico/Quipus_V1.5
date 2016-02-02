@@ -5,6 +5,7 @@
  */
 package com.ec.vistas;
 
+import static com.ec.vistas.ListaIngresos.openFrameCount;
 import static com.ec.vistas.Principal.desktopPane;
 
 /**
@@ -18,6 +19,7 @@ public class VistaRegistrarEgreso extends javax.swing.JInternalFrame {
      */
     
     public VistaRegistrarEgreso() {
+        
         initComponents();
     }
 

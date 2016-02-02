@@ -100,7 +100,7 @@ public class VistaTipodeRegistro extends javax.swing.JInternalFrame {
 
     private void btnEgresoActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-        VistaRegistrarEgreso ObjTipoEgreso =new VistaRegistrarEgreso();
+        RegistrarEgreso ObjTipoEgreso = new RegistrarEgreso();
         desktopPane.add(ObjTipoEgreso);
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = ObjTipoEgreso.getSize();
