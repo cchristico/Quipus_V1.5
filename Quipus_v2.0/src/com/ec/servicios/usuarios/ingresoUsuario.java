@@ -17,7 +17,7 @@ import com.ec.utilitarios.UserValidationIntegration;
  */
 public class ingresoUsuario {
 
-public void UserCreate(Usuario usuario)
+public void UserCreate(Usuario usuario) throws Exception
 {
     UserValidationIntegration validation = new UserValidationIntegration();   
     validation.UserCreation(usuario);

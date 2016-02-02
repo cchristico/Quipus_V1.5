@@ -41,9 +41,9 @@ public void Loging(Usuario usuario)
     if(logUser(usuario))
     {
         UsuarioLog usr = new UsuarioLog();
-        usr.setCedulaUsr(usuario.nombresapellidos);
-        usr.setCedulaUsr(usuario.cedula);
-        usr.setIDUsr(usuario.idUsu);
+        usr.setNombreUsr(usuario.getNombresapellidos());
+        usr.setCedulaUsr(usuario.getCedula());
+        usr.setIDUsr(usuario.getIdUsu());
         System.out.println(usr.getCedulaUsr());
         //Usuario usr = new Usuario();
         Principal main = new Principal();
