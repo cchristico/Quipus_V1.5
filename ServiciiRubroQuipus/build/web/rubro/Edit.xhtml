@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RubroEditDlg" widgetVar="RubroEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRubroTitle}">
+            <h:form id="RubroEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{rubroController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRubroLabel_idrubroalcanzado}" for="idrubroalcanzado" />
+                        <p:inputText id="idrubroalcanzado" value="#{rubroController.selected.idrubroalcanzado}" title="#{bundle.EditRubroTitle_idrubroalcanzado}" required="true" requiredMessage="#{bundle.EditRubroRequiredMessage_idrubroalcanzado}"/>
+                        <p:outputLabel value="#{bundle.EditRubroLabel_nombrerubro}" for="nombrerubro" />
+                        <p:inputText id="nombrerubro" value="#{rubroController.selected.nombrerubro}" title="#{bundle.EditRubroTitle_nombrerubro}" />
+                        <p:outputLabel value="#{bundle.EditRubroLabel_valoractual}" for="valoractual" />
+                        <p:inputText id="valoractual" value="#{rubroController.selected.valoractual}" title="#{bundle.EditRubroTitle_valoractual}" />
+                        <p:outputLabel value="#{bundle.EditRubroLabel_codigorubro}" for="codigorubro" />
+                        <p:inputText id="codigorubro" value="#{rubroController.selected.codigorubro}" title="#{bundle.EditRubroTitle_codigorubro}" />
+                        <p:outputLabel value="#{bundle.EditRubroLabel_valorreferencia}" for="valorreferencia" />
+                        <p:inputText id="valorreferencia" value="#{rubroController.selected.valorreferencia}" title="#{bundle.EditRubroTitle_valorreferencia}" required="true" requiredMessage="#{bundle.EditRubroRequiredMessage_valorreferencia}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{rubroController.update}" value="#{bundle.Save}" update="display,:RubroListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RubroEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RubroEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
