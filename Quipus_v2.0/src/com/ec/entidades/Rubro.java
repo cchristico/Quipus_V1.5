@@ -6,12 +6,10 @@
 package com.ec.entidades;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,7 +36,6 @@ public class Rubro implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IDRUBROALCANZADO")
     private Integer idrubroalcanzado;
@@ -52,7 +49,7 @@ public class Rubro implements Serializable {
     @Column(name = "VALORREFERENCIA")
     private int valorreferencia;
     @OneToMany(mappedBy = "idrubroalcanzado")
-    private Set<Facturaegreso> facturaegresoSet;
+    private Collection<Facturaegreso> facturaegresoCollection;
 
     public Rubro() {
     }
@@ -107,12 +104,12 @@ public class Rubro implements Serializable {
     }
 
     @XmlTransient
-    public Set<Facturaegreso> getFacturaegresoSet() {
-        return facturaegresoSet;
+    public Collection<Facturaegreso> getFacturaegresoCollection() {
+        return facturaegresoCollection;
     }
 
-    public void setFacturaegresoSet(Set<Facturaegreso> facturaegresoSet) {
-        this.facturaegresoSet = facturaegresoSet;
+    public void setFacturaegresoCollection(Collection<Facturaegreso> facturaegresoCollection) {
+        this.facturaegresoCollection = facturaegresoCollection;
     }
 
     @Override

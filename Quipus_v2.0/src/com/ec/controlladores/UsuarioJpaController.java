@@ -13,9 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.ec.entidades.Factura;
 import com.ec.entidades.Usuario;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -35,27 +35,27 @@ public class UsuarioJpaController implements Serializable {
     }
 
     public void create(Usuario usuario) {
-        if (usuario.getFacturaCollection() == null) {
-            usuario.setFacturaCollection(new ArrayList<Factura>());
+        if (usuario.getFacturaSet() == null) {
+            usuario.setFacturaSet(new HashSet<Factura>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Factura> attachedFacturaCollection = new ArrayList<Factura>();
-            for (Factura facturaCollectionFacturaToAttach : usuario.getFacturaCollection()) {
-                facturaCollectionFacturaToAttach = em.getReference(facturaCollectionFacturaToAttach.getClass(), facturaCollectionFacturaToAttach.getIdfactura());
-                attachedFacturaCollection.add(facturaCollectionFacturaToAttach);
+            Set<Factura> attachedFacturaSet = new HashSet<Factura>();
+            for (Factura facturaSetFacturaToAttach : usuario.getFacturaSet()) {
+                facturaSetFacturaToAttach = em.getReference(facturaSetFacturaToAttach.getClass(), facturaSetFacturaToAttach.getIdfactura());
+                attachedFacturaSet.add(facturaSetFacturaToAttach);
             }
-            usuario.setFacturaCollection(attachedFacturaCollection);
+            usuario.setFacturaSet(attachedFacturaSet);
             em.persist(usuario);
-            for (Factura facturaCollectionFactura : usuario.getFacturaCollection()) {
-                Usuario oldIdUsuOfFacturaCollectionFactura = facturaCollectionFactura.getIdUsu();
-                facturaCollectionFactura.setIdUsu(usuario);
-                facturaCollectionFactura = em.merge(facturaCollectionFactura);
-                if (oldIdUsuOfFacturaCollectionFactura != null) {
-                    oldIdUsuOfFacturaCollectionFactura.getFacturaCollection().remove(facturaCollectionFactura);
-                    oldIdUsuOfFacturaCollectionFactura = em.merge(oldIdUsuOfFacturaCollectionFactura);
+            for (Factura facturaSetFactura : usuario.getFacturaSet()) {
+                Usuario oldIdUsuOfFacturaSetFactura = facturaSetFactura.getIdUsu();
+                facturaSetFactura.setIdUsu(usuario);
+                facturaSetFactura = em.merge(facturaSetFactura);
+                if (oldIdUsuOfFacturaSetFactura != null) {
+                    oldIdUsuOfFacturaSetFactura.getFacturaSet().remove(facturaSetFactura);
+                    oldIdUsuOfFacturaSetFactura = em.merge(oldIdUsuOfFacturaSetFactura);
                 }
             }
             em.getTransaction().commit();
@@ -72,30 +72,30 @@ public class UsuarioJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Usuario persistentUsuario = em.find(Usuario.class, usuario.getIdUsu());
-            Collection<Factura> facturaCollectionOld = persistentUsuario.getFacturaCollection();
-            Collection<Factura> facturaCollectionNew = usuario.getFacturaCollection();
-            Collection<Factura> attachedFacturaCollectionNew = new ArrayList<Factura>();
-            for (Factura facturaCollectionNewFacturaToAttach : facturaCollectionNew) {
-                facturaCollectionNewFacturaToAttach = em.getReference(facturaCollectionNewFacturaToAttach.getClass(), facturaCollectionNewFacturaToAttach.getIdfactura());
-                attachedFacturaCollectionNew.add(facturaCollectionNewFacturaToAttach);
+            Set<Factura> facturaSetOld = persistentUsuario.getFacturaSet();
+            Set<Factura> facturaSetNew = usuario.getFacturaSet();
+            Set<Factura> attachedFacturaSetNew = new HashSet<Factura>();
+            for (Factura facturaSetNewFacturaToAttach : facturaSetNew) {
+                facturaSetNewFacturaToAttach = em.getReference(facturaSetNewFacturaToAttach.getClass(), facturaSetNewFacturaToAttach.getIdfactura());
+                attachedFacturaSetNew.add(facturaSetNewFacturaToAttach);
             }
-            facturaCollectionNew = attachedFacturaCollectionNew;
-            usuario.setFacturaCollection(facturaCollectionNew);
+            facturaSetNew = attachedFacturaSetNew;
+            usuario.setFacturaSet(facturaSetNew);
             usuario = em.merge(usuario);
-            for (Factura facturaCollectionOldFactura : facturaCollectionOld) {
-                if (!facturaCollectionNew.contains(facturaCollectionOldFactura)) {
-                    facturaCollectionOldFactura.setIdUsu(null);
-                    facturaCollectionOldFactura = em.merge(facturaCollectionOldFactura);
+            for (Factura facturaSetOldFactura : facturaSetOld) {
+                if (!facturaSetNew.contains(facturaSetOldFactura)) {
+                    facturaSetOldFactura.setIdUsu(null);
+                    facturaSetOldFactura = em.merge(facturaSetOldFactura);
                 }
             }
-            for (Factura facturaCollectionNewFactura : facturaCollectionNew) {
-                if (!facturaCollectionOld.contains(facturaCollectionNewFactura)) {
-                    Usuario oldIdUsuOfFacturaCollectionNewFactura = facturaCollectionNewFactura.getIdUsu();
-                    facturaCollectionNewFactura.setIdUsu(usuario);
-                    facturaCollectionNewFactura = em.merge(facturaCollectionNewFactura);
-                    if (oldIdUsuOfFacturaCollectionNewFactura != null && !oldIdUsuOfFacturaCollectionNewFactura.equals(usuario)) {
-                        oldIdUsuOfFacturaCollectionNewFactura.getFacturaCollection().remove(facturaCollectionNewFactura);
-                        oldIdUsuOfFacturaCollectionNewFactura = em.merge(oldIdUsuOfFacturaCollectionNewFactura);
+            for (Factura facturaSetNewFactura : facturaSetNew) {
+                if (!facturaSetOld.contains(facturaSetNewFactura)) {
+                    Usuario oldIdUsuOfFacturaSetNewFactura = facturaSetNewFactura.getIdUsu();
+                    facturaSetNewFactura.setIdUsu(usuario);
+                    facturaSetNewFactura = em.merge(facturaSetNewFactura);
+                    if (oldIdUsuOfFacturaSetNewFactura != null && !oldIdUsuOfFacturaSetNewFactura.equals(usuario)) {
+                        oldIdUsuOfFacturaSetNewFactura.getFacturaSet().remove(facturaSetNewFactura);
+                        oldIdUsuOfFacturaSetNewFactura = em.merge(oldIdUsuOfFacturaSetNewFactura);
                     }
                 }
             }
@@ -128,10 +128,10 @@ public class UsuarioJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
-            Collection<Factura> facturaCollection = usuario.getFacturaCollection();
-            for (Factura facturaCollectionFactura : facturaCollection) {
-                facturaCollectionFactura.setIdUsu(null);
-                facturaCollectionFactura = em.merge(facturaCollectionFactura);
+            Set<Factura> facturaSet = usuario.getFacturaSet();
+            for (Factura facturaSetFactura : facturaSet) {
+                facturaSetFactura.setIdUsu(null);
+                facturaSetFactura = em.merge(facturaSetFactura);
             }
             em.remove(usuario);
             em.getTransaction().commit();

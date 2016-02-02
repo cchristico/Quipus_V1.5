@@ -70,7 +70,7 @@ public class FacturaegresoJpaController implements Serializable {
                 factura = em.merge(factura);
             }
             if (idrubroalcanzado != null) {
-                idrubroalcanzado.getFacturaegresoCollection().add(facturaegreso);
+                idrubroalcanzado.getFacturaegresoSet().add(facturaegreso);
                 idrubroalcanzado = em.merge(idrubroalcanzado);
             }
             em.getTransaction().commit();
@@ -122,11 +122,11 @@ public class FacturaegresoJpaController implements Serializable {
                 facturaNew = em.merge(facturaNew);
             }
             if (idrubroalcanzadoOld != null && !idrubroalcanzadoOld.equals(idrubroalcanzadoNew)) {
-                idrubroalcanzadoOld.getFacturaegresoCollection().remove(facturaegreso);
+                idrubroalcanzadoOld.getFacturaegresoSet().remove(facturaegreso);
                 idrubroalcanzadoOld = em.merge(idrubroalcanzadoOld);
             }
             if (idrubroalcanzadoNew != null && !idrubroalcanzadoNew.equals(idrubroalcanzadoOld)) {
-                idrubroalcanzadoNew.getFacturaegresoCollection().add(facturaegreso);
+                idrubroalcanzadoNew.getFacturaegresoSet().add(facturaegreso);
                 idrubroalcanzadoNew = em.merge(idrubroalcanzadoNew);
             }
             em.getTransaction().commit();
@@ -165,7 +165,7 @@ public class FacturaegresoJpaController implements Serializable {
             }
             Rubro idrubroalcanzado = facturaegreso.getIdrubroalcanzado();
             if (idrubroalcanzado != null) {
-                idrubroalcanzado.getFacturaegresoCollection().remove(facturaegreso);
+                idrubroalcanzado.getFacturaegresoSet().remove(facturaegreso);
                 idrubroalcanzado = em.merge(idrubroalcanzado);
             }
             em.remove(facturaegreso);

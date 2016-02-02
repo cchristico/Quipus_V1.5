@@ -6,7 +6,6 @@
 package com.ec.controlladores;
 
 import com.ec.controlladores.exceptions.NonexistentEntityException;
-import com.ec.controlladores.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -14,9 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.ec.entidades.Facturaegreso;
 import com.ec.entidades.Rubro;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -35,36 +34,31 @@ public class RubroJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Rubro rubro) throws PreexistingEntityException, Exception {
-        if (rubro.getFacturaegresoCollection() == null) {
-            rubro.setFacturaegresoCollection(new ArrayList<Facturaegreso>());
+    public void create(Rubro rubro) {
+        if (rubro.getFacturaegresoSet() == null) {
+            rubro.setFacturaegresoSet(new HashSet<Facturaegreso>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Collection<Facturaegreso> attachedFacturaegresoCollection = new ArrayList<Facturaegreso>();
-            for (Facturaegreso facturaegresoCollectionFacturaegresoToAttach : rubro.getFacturaegresoCollection()) {
-                facturaegresoCollectionFacturaegresoToAttach = em.getReference(facturaegresoCollectionFacturaegresoToAttach.getClass(), facturaegresoCollectionFacturaegresoToAttach.getIdfactura());
-                attachedFacturaegresoCollection.add(facturaegresoCollectionFacturaegresoToAttach);
+            Set<Facturaegreso> attachedFacturaegresoSet = new HashSet<Facturaegreso>();
+            for (Facturaegreso facturaegresoSetFacturaegresoToAttach : rubro.getFacturaegresoSet()) {
+                facturaegresoSetFacturaegresoToAttach = em.getReference(facturaegresoSetFacturaegresoToAttach.getClass(), facturaegresoSetFacturaegresoToAttach.getIdfactura());
+                attachedFacturaegresoSet.add(facturaegresoSetFacturaegresoToAttach);
             }
-            rubro.setFacturaegresoCollection(attachedFacturaegresoCollection);
+            rubro.setFacturaegresoSet(attachedFacturaegresoSet);
             em.persist(rubro);
-            for (Facturaegreso facturaegresoCollectionFacturaegreso : rubro.getFacturaegresoCollection()) {
-                Rubro oldIdrubroalcanzadoOfFacturaegresoCollectionFacturaegreso = facturaegresoCollectionFacturaegreso.getIdrubroalcanzado();
-                facturaegresoCollectionFacturaegreso.setIdrubroalcanzado(rubro);
-                facturaegresoCollectionFacturaegreso = em.merge(facturaegresoCollectionFacturaegreso);
-                if (oldIdrubroalcanzadoOfFacturaegresoCollectionFacturaegreso != null) {
-                    oldIdrubroalcanzadoOfFacturaegresoCollectionFacturaegreso.getFacturaegresoCollection().remove(facturaegresoCollectionFacturaegreso);
-                    oldIdrubroalcanzadoOfFacturaegresoCollectionFacturaegreso = em.merge(oldIdrubroalcanzadoOfFacturaegresoCollectionFacturaegreso);
+            for (Facturaegreso facturaegresoSetFacturaegreso : rubro.getFacturaegresoSet()) {
+                Rubro oldIdrubroalcanzadoOfFacturaegresoSetFacturaegreso = facturaegresoSetFacturaegreso.getIdrubroalcanzado();
+                facturaegresoSetFacturaegreso.setIdrubroalcanzado(rubro);
+                facturaegresoSetFacturaegreso = em.merge(facturaegresoSetFacturaegreso);
+                if (oldIdrubroalcanzadoOfFacturaegresoSetFacturaegreso != null) {
+                    oldIdrubroalcanzadoOfFacturaegresoSetFacturaegreso.getFacturaegresoSet().remove(facturaegresoSetFacturaegreso);
+                    oldIdrubroalcanzadoOfFacturaegresoSetFacturaegreso = em.merge(oldIdrubroalcanzadoOfFacturaegresoSetFacturaegreso);
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findRubro(rubro.getIdrubroalcanzado()) != null) {
-                throw new PreexistingEntityException("Rubro " + rubro + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -78,30 +72,30 @@ public class RubroJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Rubro persistentRubro = em.find(Rubro.class, rubro.getIdrubroalcanzado());
-            Collection<Facturaegreso> facturaegresoCollectionOld = persistentRubro.getFacturaegresoCollection();
-            Collection<Facturaegreso> facturaegresoCollectionNew = rubro.getFacturaegresoCollection();
-            Collection<Facturaegreso> attachedFacturaegresoCollectionNew = new ArrayList<Facturaegreso>();
-            for (Facturaegreso facturaegresoCollectionNewFacturaegresoToAttach : facturaegresoCollectionNew) {
-                facturaegresoCollectionNewFacturaegresoToAttach = em.getReference(facturaegresoCollectionNewFacturaegresoToAttach.getClass(), facturaegresoCollectionNewFacturaegresoToAttach.getIdfactura());
-                attachedFacturaegresoCollectionNew.add(facturaegresoCollectionNewFacturaegresoToAttach);
+            Set<Facturaegreso> facturaegresoSetOld = persistentRubro.getFacturaegresoSet();
+            Set<Facturaegreso> facturaegresoSetNew = rubro.getFacturaegresoSet();
+            Set<Facturaegreso> attachedFacturaegresoSetNew = new HashSet<Facturaegreso>();
+            for (Facturaegreso facturaegresoSetNewFacturaegresoToAttach : facturaegresoSetNew) {
+                facturaegresoSetNewFacturaegresoToAttach = em.getReference(facturaegresoSetNewFacturaegresoToAttach.getClass(), facturaegresoSetNewFacturaegresoToAttach.getIdfactura());
+                attachedFacturaegresoSetNew.add(facturaegresoSetNewFacturaegresoToAttach);
             }
-            facturaegresoCollectionNew = attachedFacturaegresoCollectionNew;
-            rubro.setFacturaegresoCollection(facturaegresoCollectionNew);
+            facturaegresoSetNew = attachedFacturaegresoSetNew;
+            rubro.setFacturaegresoSet(facturaegresoSetNew);
             rubro = em.merge(rubro);
-            for (Facturaegreso facturaegresoCollectionOldFacturaegreso : facturaegresoCollectionOld) {
-                if (!facturaegresoCollectionNew.contains(facturaegresoCollectionOldFacturaegreso)) {
-                    facturaegresoCollectionOldFacturaegreso.setIdrubroalcanzado(null);
-                    facturaegresoCollectionOldFacturaegreso = em.merge(facturaegresoCollectionOldFacturaegreso);
+            for (Facturaegreso facturaegresoSetOldFacturaegreso : facturaegresoSetOld) {
+                if (!facturaegresoSetNew.contains(facturaegresoSetOldFacturaegreso)) {
+                    facturaegresoSetOldFacturaegreso.setIdrubroalcanzado(null);
+                    facturaegresoSetOldFacturaegreso = em.merge(facturaegresoSetOldFacturaegreso);
                 }
             }
-            for (Facturaegreso facturaegresoCollectionNewFacturaegreso : facturaegresoCollectionNew) {
-                if (!facturaegresoCollectionOld.contains(facturaegresoCollectionNewFacturaegreso)) {
-                    Rubro oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso = facturaegresoCollectionNewFacturaegreso.getIdrubroalcanzado();
-                    facturaegresoCollectionNewFacturaegreso.setIdrubroalcanzado(rubro);
-                    facturaegresoCollectionNewFacturaegreso = em.merge(facturaegresoCollectionNewFacturaegreso);
-                    if (oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso != null && !oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso.equals(rubro)) {
-                        oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso.getFacturaegresoCollection().remove(facturaegresoCollectionNewFacturaegreso);
-                        oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso = em.merge(oldIdrubroalcanzadoOfFacturaegresoCollectionNewFacturaegreso);
+            for (Facturaegreso facturaegresoSetNewFacturaegreso : facturaegresoSetNew) {
+                if (!facturaegresoSetOld.contains(facturaegresoSetNewFacturaegreso)) {
+                    Rubro oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso = facturaegresoSetNewFacturaegreso.getIdrubroalcanzado();
+                    facturaegresoSetNewFacturaegreso.setIdrubroalcanzado(rubro);
+                    facturaegresoSetNewFacturaegreso = em.merge(facturaegresoSetNewFacturaegreso);
+                    if (oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso != null && !oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso.equals(rubro)) {
+                        oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso.getFacturaegresoSet().remove(facturaegresoSetNewFacturaegreso);
+                        oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso = em.merge(oldIdrubroalcanzadoOfFacturaegresoSetNewFacturaegreso);
                     }
                 }
             }
@@ -134,10 +128,10 @@ public class RubroJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The rubro with id " + id + " no longer exists.", enfe);
             }
-            Collection<Facturaegreso> facturaegresoCollection = rubro.getFacturaegresoCollection();
-            for (Facturaegreso facturaegresoCollectionFacturaegreso : facturaegresoCollection) {
-                facturaegresoCollectionFacturaegreso.setIdrubroalcanzado(null);
-                facturaegresoCollectionFacturaegreso = em.merge(facturaegresoCollectionFacturaegreso);
+            Set<Facturaegreso> facturaegresoSet = rubro.getFacturaegresoSet();
+            for (Facturaegreso facturaegresoSetFacturaegreso : facturaegresoSet) {
+                facturaegresoSetFacturaegreso.setIdrubroalcanzado(null);
+                facturaegresoSetFacturaegreso = em.merge(facturaegresoSetFacturaegreso);
             }
             em.remove(rubro);
             em.getTransaction().commit();

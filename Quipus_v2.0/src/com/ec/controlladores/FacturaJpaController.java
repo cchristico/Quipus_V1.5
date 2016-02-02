@@ -67,7 +67,7 @@ public class FacturaJpaController implements Serializable {
                 facturaingreso = em.merge(facturaingreso);
             }
             if (idUsu != null) {
-                idUsu.getFacturaCollection().add(factura);
+                idUsu.getFacturaSet().add(factura);
                 idUsu = em.merge(idUsu);
             }
             if (facturaegreso != null) {
@@ -138,11 +138,11 @@ public class FacturaJpaController implements Serializable {
                 facturaingresoNew = em.merge(facturaingresoNew);
             }
             if (idUsuOld != null && !idUsuOld.equals(idUsuNew)) {
-                idUsuOld.getFacturaCollection().remove(factura);
+                idUsuOld.getFacturaSet().remove(factura);
                 idUsuOld = em.merge(idUsuOld);
             }
             if (idUsuNew != null && !idUsuNew.equals(idUsuOld)) {
-                idUsuNew.getFacturaCollection().add(factura);
+                idUsuNew.getFacturaSet().add(factura);
                 idUsuNew = em.merge(idUsuNew);
             }
             if (facturaegresoNew != null && !facturaegresoNew.equals(facturaegresoOld)) {
@@ -203,7 +203,7 @@ public class FacturaJpaController implements Serializable {
             }
             Usuario idUsu = factura.getIdUsu();
             if (idUsu != null) {
-                idUsu.getFacturaCollection().remove(factura);
+                idUsu.getFacturaSet().remove(factura);
                 idUsu = em.merge(idUsu);
             }
             em.remove(factura);

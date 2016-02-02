@@ -6,7 +6,7 @@
 package com.ec.entidades;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +47,7 @@ public class Usuario implements Serializable {
     @Column(name = "CEDULA")
     private String cedula;
     @OneToMany(mappedBy = "idUsu")
-    private Set<Factura> facturaSet;
+    private Collection<Factura> facturaCollection;
 
     public Usuario() {
     }
@@ -87,12 +87,12 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public Set<Factura> getFacturaSet() {
-        return facturaSet;
+    public Collection<Factura> getFacturaCollection() {
+        return facturaCollection;
     }
 
-    public void setFacturaSet(Set<Factura> facturaSet) {
-        this.facturaSet = facturaSet;
+    public void setFacturaCollection(Collection<Factura> facturaCollection) {
+        this.facturaCollection = facturaCollection;
     }
 
     @Override
