@@ -5,13 +5,13 @@
  */
 package com.ec.entidades;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +21,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -39,11 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Facturaegreso.findByValorfactura", query = "SELECT f FROM Facturaegreso f WHERE f.valorfactura = :valorfactura")})
 public class Facturaegreso implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "IDFACTURA")
     private Integer idfactura;
@@ -73,9 +70,7 @@ public class Facturaegreso implements Serializable {
     }
 
     public void setIdfactura(Integer idfactura) {
-        Integer oldIdfactura = this.idfactura;
         this.idfactura = idfactura;
-        changeSupport.firePropertyChange("idfactura", oldIdfactura, idfactura);
     }
 
     public Integer getIdUsu() {
@@ -83,9 +78,7 @@ public class Facturaegreso implements Serializable {
     }
 
     public void setIdUsu(Integer idUsu) {
-        Integer oldIdUsu = this.idUsu;
         this.idUsu = idUsu;
-        changeSupport.firePropertyChange("idUsu", oldIdUsu, idUsu);
     }
 
     public Date getFechafactura() {
@@ -93,9 +86,7 @@ public class Facturaegreso implements Serializable {
     }
 
     public void setFechafactura(Date fechafactura) {
-        Date oldFechafactura = this.fechafactura;
         this.fechafactura = fechafactura;
-        changeSupport.firePropertyChange("fechafactura", oldFechafactura, fechafactura);
     }
 
     public String getValorfactura() {
@@ -103,9 +94,7 @@ public class Facturaegreso implements Serializable {
     }
 
     public void setValorfactura(String valorfactura) {
-        String oldValorfactura = this.valorfactura;
         this.valorfactura = valorfactura;
-        changeSupport.firePropertyChange("valorfactura", oldValorfactura, valorfactura);
     }
 
     public Factura getFactura() {
@@ -121,9 +110,7 @@ public class Facturaegreso implements Serializable {
     }
 
     public void setIdrubroalcanzado(Rubro idrubroalcanzado) {
-        Rubro oldIdrubroalcanzado = this.idrubroalcanzado;
         this.idrubroalcanzado = idrubroalcanzado;
-        changeSupport.firePropertyChange("idrubroalcanzado", oldIdrubroalcanzado, idrubroalcanzado);
     }
 
     @Override
@@ -149,14 +136,6 @@ public class Facturaegreso implements Serializable {
     @Override
     public String toString() {
         return "com.ec.entidades.Facturaegreso[ idfactura=" + idfactura + " ]";
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
     }
     
 }
