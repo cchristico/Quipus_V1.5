@@ -10,6 +10,8 @@ import com.ec.entidades.Usuario;
 //import com.ec.servicios.usuarios.*;
 import com.ec.entidades.Usuario;
 import com.ec.servicios.usuarios.ingresoUsuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -144,7 +146,11 @@ Usuario usr = new Usuario();
     usr.setCedula(txtRuc.getText()); 
     usr.setNombresapellidos(txtNombre.getText()+" "+txtApellido.getText());
     ingresoUsuario userAdd = new ingresoUsuario();
-    userAdd.UserCreate(usr);
+        try {
+            userAdd.UserCreate(usr);
+        } catch (Exception ex) {
+            Logger.getLogger(RegistrarUsr.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 
 JOptionPane.showConfirmDialog(null, "Usuario agregado");
