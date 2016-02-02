@@ -329,7 +329,7 @@ public class GeneralValidations {
         public void UserExist(Usuario usuario)
 {
     try {
-        EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
+        EntityManagerFactory emFac = Persistence.createEntityManagerFactory("Quipus_v2");
     EntityManager entityManager = emFac.createEntityManager();
     Query query1 = entityManager.createQuery("Select u.idUsu from Usuario u where u.cedula = :usuarioCI and u.nombresapellidos = :usuarioName");
     query1.setParameter("usuarioCI", usuario.getCedula())

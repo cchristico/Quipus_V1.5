@@ -6,7 +6,7 @@
 package com.ec.utilitarios;
 import com.ec.negocio.GeneralValidations;
 import com.ec.entidades.Usuario;
-import com.ec.controlladores.UsuarioJpaController;
+import com.ec.controladores.UsuarioJpaController;
 import com.ec.vistas.Login;
 import com.ec.vistas.Principal;
 import javax.persistence.EntityManager;
@@ -27,7 +27,7 @@ public void UserCreation(Usuario usuario) throws Exception
 {
     if(validFiedls(usuario))
     {
-        EntityManagerFactory conexion = Persistence.createEntityManagerFactory("Quipus_v2.0PU");
+        EntityManagerFactory conexion = Persistence.createEntityManagerFactory("Quipus_v2");
         UsuarioJpaController usrController = new UsuarioJpaController(conexion);
         usrController.create(usuario);
 //    usrController.create(usuario);

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ec.controlladores;
+package com.ec.controladores;
 
-import com.ec.controlladores.exceptions.IllegalOrphanException;
-import com.ec.controlladores.exceptions.NonexistentEntityException;
+import com.ec.controladores.exceptions.IllegalOrphanException;
+import com.ec.controladores.exceptions.NonexistentEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -70,7 +70,7 @@ public class FacturaegresoJpaController implements Serializable {
                 factura = em.merge(factura);
             }
             if (idrubroalcanzado != null) {
-                idrubroalcanzado.getFacturaegresoSet().add(facturaegreso);
+                idrubroalcanzado.getFacturaegresoCollection().add(facturaegreso);
                 idrubroalcanzado = em.merge(idrubroalcanzado);
             }
             em.getTransaction().commit();
@@ -122,11 +122,11 @@ public class FacturaegresoJpaController implements Serializable {
                 facturaNew = em.merge(facturaNew);
             }
             if (idrubroalcanzadoOld != null && !idrubroalcanzadoOld.equals(idrubroalcanzadoNew)) {
-                idrubroalcanzadoOld.getFacturaegresoSet().remove(facturaegreso);
+                idrubroalcanzadoOld.getFacturaegresoCollection().remove(facturaegreso);
                 idrubroalcanzadoOld = em.merge(idrubroalcanzadoOld);
             }
             if (idrubroalcanzadoNew != null && !idrubroalcanzadoNew.equals(idrubroalcanzadoOld)) {
-                idrubroalcanzadoNew.getFacturaegresoSet().add(facturaegreso);
+                idrubroalcanzadoNew.getFacturaegresoCollection().add(facturaegreso);
                 idrubroalcanzadoNew = em.merge(idrubroalcanzadoNew);
             }
             em.getTransaction().commit();
@@ -165,7 +165,7 @@ public class FacturaegresoJpaController implements Serializable {
             }
             Rubro idrubroalcanzado = facturaegreso.getIdrubroalcanzado();
             if (idrubroalcanzado != null) {
-                idrubroalcanzado.getFacturaegresoSet().remove(facturaegreso);
+                idrubroalcanzado.getFacturaegresoCollection().remove(facturaegreso);
                 idrubroalcanzado = em.merge(idrubroalcanzado);
             }
             em.remove(facturaegreso);

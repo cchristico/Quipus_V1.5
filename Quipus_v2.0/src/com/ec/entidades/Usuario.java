@@ -39,15 +39,15 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "ID_USU")
-    private Integer idUsu;
+    public Integer idUsu;
     @Basic(optional = false)
     @Column(name = "NOMBRESAPELLIDOS")
-    private String nombresapellidos;
+    public String nombresapellidos;
     @Basic(optional = false)
     @Column(name = "CEDULA")
-    private String cedula;
+    public String cedula;
     @OneToMany(mappedBy = "idUsu")
-    private Collection<Factura> facturaCollection;
+    public Collection<Factura> facturaCollection;
 
     public Usuario() {
     }

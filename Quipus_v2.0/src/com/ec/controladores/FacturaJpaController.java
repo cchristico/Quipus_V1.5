@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.ec.controlladores;
+package com.ec.controladores;
 
-import com.ec.controlladores.exceptions.IllegalOrphanException;
-import com.ec.controlladores.exceptions.NonexistentEntityException;
+import com.ec.controladores.exceptions.IllegalOrphanException;
+import com.ec.controladores.exceptions.NonexistentEntityException;
 import com.ec.entidades.Factura;
 import java.io.Serializable;
 import javax.persistence.Query;
@@ -67,7 +67,7 @@ public class FacturaJpaController implements Serializable {
                 facturaingreso = em.merge(facturaingreso);
             }
             if (idUsu != null) {
-                idUsu.getFacturaSet().add(factura);
+                idUsu.getFacturaCollection().add(factura);
                 idUsu = em.merge(idUsu);
             }
             if (facturaegreso != null) {
@@ -138,11 +138,11 @@ public class FacturaJpaController implements Serializable {
                 facturaingresoNew = em.merge(facturaingresoNew);
             }
             if (idUsuOld != null && !idUsuOld.equals(idUsuNew)) {
-                idUsuOld.getFacturaSet().remove(factura);
+                idUsuOld.getFacturaCollection().remove(factura);
                 idUsuOld = em.merge(idUsuOld);
             }
             if (idUsuNew != null && !idUsuNew.equals(idUsuOld)) {
-                idUsuNew.getFacturaSet().add(factura);
+                idUsuNew.getFacturaCollection().add(factura);
                 idUsuNew = em.merge(idUsuNew);
             }
             if (facturaegresoNew != null && !facturaegresoNew.equals(facturaegresoOld)) {
@@ -203,7 +203,7 @@ public class FacturaJpaController implements Serializable {
             }
             Usuario idUsu = factura.getIdUsu();
             if (idUsu != null) {
-                idUsu.getFacturaSet().remove(factura);
+                idUsu.getFacturaCollection().remove(factura);
                 idUsu = em.merge(idUsu);
             }
             em.remove(factura);

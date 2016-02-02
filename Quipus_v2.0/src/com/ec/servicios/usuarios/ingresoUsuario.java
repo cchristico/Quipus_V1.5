@@ -17,10 +17,11 @@ import com.ec.utilitarios.UserValidationIntegration;
  */
 public class ingresoUsuario {
 
-public void UserCreate(Usuario usuario) throws Exception
+public void UserCreate(Usuario usuario) throws Exception 
 {
     UserValidationIntegration validation = new UserValidationIntegration();   
     validation.UserCreation(usuario);
+    //validation.UserCreation(usuario);
 }
 
 }
