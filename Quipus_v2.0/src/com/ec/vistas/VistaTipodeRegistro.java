@@ -105,7 +105,7 @@ public class VistaTipodeRegistro extends javax.swing.JInternalFrame {
         Dimension desktopSize = desktopPane.getSize();
         Dimension FrameSize = ObjTipoEgreso.getSize();
         ObjTipoEgreso.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
-        this.setVisible(false);
+//        this.setVisible(false);
         ObjTipoEgreso.show();
         
         
