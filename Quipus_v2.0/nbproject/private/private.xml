@@ -6,8 +6,11 @@
 <<<<<<< HEAD
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/Login.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/utilitarios/UsuarioLog.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaIngresos.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/Principal.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/VistaRegistrarIngreso.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/utilitarios/UserValidationIntegration.java</file>
+<<<<<<< HEAD
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/negocio/GeneralValidations.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/FacturaIngresos.java</file>
             <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/ListaEgresos.java</file>
@@ -25,6 +28,11 @@
             <file>file:/C:/Users/Toshiba/Documents/KATY/AAL/ProyectoFinal/Quipus_V1.5/Quipus_v2.0/src/com/ec/servicios/usuarios/ingresoUsuario.java</file>
             <file>file:/C:/Users/Toshiba/Documents/KATY/AAL/ProyectoFinal/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/RegistrarUsr.java</file>
 >>>>>>> 76ef2685bffefd4bf11c4f232a4318f6a9138b89
+=======
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/entidades/Usuario.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/servicios/usuarios/ingresoUsuario.java</file>
+            <file>file:/E:/ProyectoLibres/Quipus_V1.5/Quipus_v2.0/src/com/ec/vistas/VistaTipodeRegistro.java</file>
+>>>>>>> PasoUsuarioParametro
         </group>
     </open-files>
 </project-private>
